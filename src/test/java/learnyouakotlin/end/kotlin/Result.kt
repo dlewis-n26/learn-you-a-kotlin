@@ -23,9 +23,8 @@ sealed class Result<out T> {
 
 fun <T> Iterable<Result<T>>.flatten(): Result<List<T>> = Result.Success(fold(ArrayList<T>(), { list, result ->
     when (result) {
-        is Result.Success<T> -> list.add(result.value)
+        is Result.Success<T> -> list.apply { add(result.value) }
         is Result.Failure -> return@flatten result
     }
-    list
 }))
 
