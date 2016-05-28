@@ -3,6 +3,7 @@ package learnyouakotlin.end.kotlin
 import com.fasterxml.jackson.databind.JsonNode
 import com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactory
 import com.oneeyedmen.okeydoke.junit.ApprovalsRule
+import learnyouakotlin.end.kotlin.Result.Success
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Rule
@@ -29,6 +30,6 @@ class JsonFormatTests {
             Presenter("Nat Pryce"),
             Presenter("Duncan McGregor"))
 
-        assertThat(original.asJson().toSession(), equalTo(original))
+        assertThat(original.asJson().toSession().value, equalTo(original))
     }
 }
