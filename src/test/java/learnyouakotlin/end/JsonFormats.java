@@ -23,19 +23,15 @@ public class JsonFormats {
                 prop("presenters", mapToJsonArray(session.presenters, JsonFormats::presenterAsJson)));
     }
 
-    private static ObjectNode presenterAsJson(Presenter p) {
-        return object(prop("name", p.name));
-    }
-
-    public static Session bookFromJson(JsonNode json) throws JsonMappingException {
+    public static Session sessionFromJson(JsonNode json) throws JsonMappingException {
         try {
             SessionCode code = SessionCode.parse(json.path("code").asText());
             String title = json.path("title").asText();
 
             JsonNode authorsNode = json.path("presenters");
-            List<Presenter> authors =  stream(spliterator(authorsNode.elements(), authorsNode.size(), ORDERED), false)
-                    .map(JsonFormats::personFromJson).
-                    collect(Collectors.toList());
+            List<Presenter> authors = stream(spliterator(authorsNode.elements(), authorsNode.size(), ORDERED), false)
+                    .map(JsonFormats::presenterFromJson)
+                    .collect(Collectors.toList());
 
             return new Session(code, title, authors);
 
@@ -44,7 +40,11 @@ public class JsonFormats {
         }
     }
 
-    private static Presenter personFromJson(JsonNode authorNode) {
+    private static ObjectNode presenterAsJson(Presenter p) {
+        return object(prop("name", p.name));
+    }
+
+    private static Presenter presenterFromJson(JsonNode authorNode) {
         return new Presenter(authorNode.path("name").asText());
     }
 }

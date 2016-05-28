@@ -33,7 +33,7 @@ public class JsonFormatsTests {
                 new Presenter("Nat Pryce"),
                 new Presenter("Duncan McGregor"));
 
-        Session parsed = JsonFormats.bookFromJson(JsonFormats.sessionAsJson(original));
+        Session parsed = JsonFormats.sessionFromJson(JsonFormats.sessionAsJson(original));
 
         assertThat(parsed, equalTo(original));
     }

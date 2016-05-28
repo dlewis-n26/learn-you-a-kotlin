@@ -11,9 +11,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import static com.fasterxml.jackson.databind.SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS;
@@ -56,13 +54,6 @@ public class Json {
         return object(asList(props));
     }
 
-    @SafeVarargs
-    public static ObjectNode object(Optional<Map.Entry<String, JsonNode>>... props) {
-        return object(Stream.of(props)
-            .flatMap(prop -> prop.map(Stream::of).orElse(Stream.empty()))
-            .collect(toList()));
-    }
-
     public static ArrayNode array(Iterable<JsonNode> elements) {
         ArrayNode array = nodes.arrayNode();
         elements.forEach(array::add);
@@ -79,37 +70,6 @@ public class Json {
 
     public static <T> ArrayNode mapToJsonArray(List<T> elements, Function<T, JsonNode> fn) {
         return array(elements.stream().map(fn).collect(toList()));
-    }
-
-    public static <T> ArrayNode mapToTextArray(List<T> elements, Function<T, String> fn) {
-        return array(elements.stream().map(fn.andThen(nodes::textNode)).collect(toList()));
-    }
-
-    public static ArrayNode textArray(Iterable<String> elements) {
-        ArrayNode array = nodes.arrayNode();
-        elements.forEach(array::add);
-        return array;
-
-    }
-
-    public static ArrayNode textArray(String... elements) {
-        return textArray(asList(elements));
-    }
-
-    public static ArrayNode concatArrays(ArrayNode ... arrays) {
-        ArrayNode concatenated = nodes.arrayNode();
-        for (ArrayNode a : arrays) {
-            concatenated.addAll(a);
-        }
-        return concatenated;
-    }
-
-    public static ArrayNode subArray(JsonNode array, int start, int size) {
-        ArrayNode result = Json.array();
-        for (int i = 0; i < size && start + i < array.size(); i++) {
-            result.add(array.get(start + i));
-        }
-        return result;
     }
 
     public static String asStableJsonString(JsonNode n) {
