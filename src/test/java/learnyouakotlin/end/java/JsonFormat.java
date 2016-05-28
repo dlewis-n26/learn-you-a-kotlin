@@ -36,7 +36,7 @@ public class JsonFormat {
             return new Session(code, title, authors);
 
         } catch (ParseException e) {
-            throw new JsonMappingException(null, "failed to parse Book from JSON", e);
+            throw new JsonMappingException(null, "failed to parse Session from JSON", e);
         }
     }
 

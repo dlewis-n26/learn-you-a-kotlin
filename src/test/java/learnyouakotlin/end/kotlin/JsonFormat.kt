@@ -9,17 +9,10 @@ fun Session.asJson() = obj(
     "title" of title,
     "presenters" of array(presenters, Presenter::asJson))
 
-fun JsonNode.toSession() =
-    try {
-        val code = SessionCode.parse(path("code").asText())
-        val title = path("title").asText()
-        val authors = path("presenters").elements().asSequence().map { it.toPresenter() }.toList()
-
-        Session(code, title, authors)
-    }
-    catch (e: ParseException) {
-        throw JsonMappingException(null, "failed to parse Book from JSON", e)
-    }
+fun JsonNode.toSession() = Session(
+    SessionCode.parse(path("code").asText()) ?: throw JsonMappingException(null, "failed to parse SessionCode from JSON"),
+    path("title").asText(),
+    path("presenters").elements().asSequence().map { it.toPresenter() }.toList())
 
 fun Presenter.asJson() = obj("name" of name)
 
