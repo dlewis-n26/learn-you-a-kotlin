@@ -1,9 +1,10 @@
-package learnyouakotlin.end;
+package learnyouakotlin.end.java;
 
 import java.util.List;
 import java.util.Objects;
 
-import static com.oneeyedmen.okeydoke.util.Tabulator.asList;
+import static java.util.Arrays.asList;
+
 
 public class Session {
     public final SessionCode code;

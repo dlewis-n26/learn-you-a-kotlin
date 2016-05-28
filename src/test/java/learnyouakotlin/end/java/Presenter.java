@@ -1,4 +1,4 @@
-package learnyouakotlin.end;
+package learnyouakotlin.end.java;
 
 import java.util.Objects;
 

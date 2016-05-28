@@ -1,4 +1,4 @@
-package learnyouakotlin.end;
+package learnyouakotlin.end.java;
 
 import java.text.ParseException;
 import java.util.Objects;

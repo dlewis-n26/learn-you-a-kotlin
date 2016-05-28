@@ -1,4 +1,4 @@
-package learnyouakotlin.end;
+package learnyouakotlin.end.java;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,9 +12,9 @@ import static com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactor
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class JsonFormatsTests {
+public class JsonFormatTests {
     @Rule
-    public final ApprovalsRule approval = new ApprovalsRule(fileSystemApproverFactory(new File("src/java/test")));
+    public final ApprovalsRule approval = new ApprovalsRule(fileSystemApproverFactory(new File("src/test/java")));
 
     @Test
     public void session_to_json() {
@@ -22,7 +22,7 @@ public class JsonFormatsTests {
                 new Presenter("Duncan McGregor"),
                 new Presenter("Nat Pryce"));
 
-        JsonNode json = JsonFormats.sessionAsJson(session);
+        JsonNode json = JsonFormat.sessionAsJson(session);
 
         approval.assertApproved(json, Json::asStableJsonString);
     }
@@ -33,7 +33,7 @@ public class JsonFormatsTests {
                 new Presenter("Nat Pryce"),
                 new Presenter("Duncan McGregor"));
 
-        Session parsed = JsonFormats.sessionFromJson(JsonFormats.sessionAsJson(original));
+        Session parsed = JsonFormat.sessionFromJson(JsonFormat.sessionAsJson(original));
 
         assertThat(parsed, equalTo(original));
     }
