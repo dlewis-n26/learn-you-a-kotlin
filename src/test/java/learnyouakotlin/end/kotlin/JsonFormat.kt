@@ -9,7 +9,6 @@ fun Session.asJson() = obj(
     "title" of title,
     "presenters" of array(presenters, Presenter::asJson))
 
-@Throws(JsonMappingException::class)
 fun JsonNode.toSession() =
     try {
         val code = SessionCode.parse(path("code").asText())
