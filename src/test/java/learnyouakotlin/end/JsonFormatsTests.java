@@ -22,7 +22,7 @@ public class JsonFormatsTests {
                 new Presenter("Duncan McGregor"),
                 new Presenter("Nat Pryce"));
 
-        JsonNode json = JsonFormats.asJson(session);
+        JsonNode json = JsonFormats.sessionAsJson(session);
 
         approval.assertApproved(json, Json::asStableJsonString);
     }
@@ -33,7 +33,7 @@ public class JsonFormatsTests {
                 new Presenter("Nat Pryce"),
                 new Presenter("Duncan McGregor"));
 
-        Session parsed = JsonFormats.bookFromJson(JsonFormats.asJson(original));
+        Session parsed = JsonFormats.bookFromJson(JsonFormats.sessionAsJson(original));
 
         assertThat(parsed, equalTo(original));
     }
