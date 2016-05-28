@@ -16,7 +16,6 @@ data class SessionCode(private val repr: Int) {
     override fun toString() = repr.toString()
 
     companion object {
-        @Throws(ParseException::class)
         fun parse(s: String): SessionCode {
             try {
                 val repr = Integer.valueOf(s)!!
