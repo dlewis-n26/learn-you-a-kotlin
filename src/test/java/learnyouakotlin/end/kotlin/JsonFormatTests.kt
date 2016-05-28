@@ -19,10 +19,8 @@ class JsonFormatTests {
         val session = Session(SessionCode(1), "Learn You a Kotlin For All The Good It Will Do You",
             Presenter("Duncan McGregor"),
             Presenter("Nat Pryce"))
-        
-        val json = session.asJson()
-        
-        approval.assertApproved(json, JsonNode::asStableJsonString)
+
+        approval.assertApproved(session.asJson(), JsonNode::asStableJsonString)
     }
     
     @Test
@@ -30,9 +28,7 @@ class JsonFormatTests {
         val original = Session(SessionCode(2), "Working Effectively with Legacy Tests",
             Presenter("Nat Pryce"),
             Presenter("Duncan McGregor"))
-        
-        val parsed = original.asJson().toSession()
-        
-        assertThat(parsed, equalTo(original))
+
+        assertThat(original.asJson().toSession(), equalTo(original))
     }
 }
