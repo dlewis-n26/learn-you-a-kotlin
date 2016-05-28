@@ -2,7 +2,6 @@ package learnyouakotlin.end;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import org.jetbrains.annotations.NotNull;
 
 import java.text.ParseException;
 import java.util.List;
@@ -40,7 +39,6 @@ public class JsonFormats {
         }
     }
 
-    @NotNull
     private static Presenter personFromJson(JsonNode authorNode) {
         return new Presenter(authorNode.path("name").asText());
     }
