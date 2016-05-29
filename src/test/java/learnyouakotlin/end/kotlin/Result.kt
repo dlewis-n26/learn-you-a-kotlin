@@ -21,6 +21,11 @@ sealed class Result<out T> {
     }
 }
 
+fun <A, T> apply(f: (A) -> T, ra: Result<A>) = ra.map(f)
+
+fun <A, B, C, T> apply(f: (A, B, C) -> T, ra: Result<A>, rb: Result<B>, rc: Result<C>) =
+    ra.flatMap { a -> rb.flatMap { b -> rc.flatMap { c -> Result.Success(f(a, b, c)) } } }
+
 fun <T> Iterable<Result<T>>.flatten(): Result<List<T>> = Result.Success(fold(ArrayList<T>(), { list, result ->
     when (result) {
         is Result.Success<T> -> list.apply { add(result.value) }

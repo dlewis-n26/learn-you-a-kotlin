@@ -10,23 +10,30 @@ fun Session.asJson() = obj(
     "title" of title,
     "presenters" of array(presenters, Presenter::asJson))
 
-fun JsonNode.toSession() =
-    path("code").toSessionCode().flatMap { sessionCode ->
-        path("title").asText().let { title ->
-            path("presenters").flatMap(JsonNode::toPresenter).flatMap { presenters ->
-                Success(Session(sessionCode, title, presenters))
-            }
-        }
-    }
+fun JsonNode.toSession() = apply(::Session,
+    path("code").toSessionCode(),
+    path("title").asNonblankText(),
+    path("presenters").flatMap(JsonNode::toPresenter))
+
 
 fun Presenter.asJson() = obj("name" of name)
-fun JsonNode.toPresenter() = Success(Presenter(path("name").asText()))
+fun JsonNode.toPresenter() = apply(::Presenter, path("name").asNonblankText())
 
 fun JsonNode.toSessionCode() = this.asText()
     .let { SessionCode.parse(it) }
     ?.let { Success(it) }
-    ?: Failure(JsonMappingException(null, "could not parse ${this.asText()} as SessionCode"))
+    ?: jsonFailure("could not parse ${asText()} as SessionCode")
 
+
+fun JsonNode.asNonblankText() = asText().let {
+    when {
+        it.isBlank() -> jsonFailure("JSON property missing")
+        else -> Result.Success(it)
+    }
+}
 
 private fun <T> JsonNode.map(transform: (JsonNode) -> T) = elements().asSequence().map(transform).toList()
 private fun <T> JsonNode.flatMap(transform: (JsonNode) -> Result<T>) = map(transform).flatten()
+
+private fun jsonFailure(message: String) = Failure(JsonMappingException(null, message))
+
