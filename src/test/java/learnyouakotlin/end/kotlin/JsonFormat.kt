@@ -27,7 +27,7 @@ fun JsonNode.toSessionCode() = this.asText()
 
 fun JsonNode.asNonblankText() = asText().let {
     when {
-        it.isBlank() -> jsonFailure("JSON property missing")
+        it.isBlank() -> jsonFailure("blank text is invalid")
         else -> Result.Success(it)
     }
 }
