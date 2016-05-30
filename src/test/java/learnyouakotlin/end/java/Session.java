@@ -1,5 +1,7 @@
 package learnyouakotlin.end.java;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +16,7 @@ public class Session {
     public Session(SessionCode code, String title, List<Presenter> presenters) {
         this.code = code;
         this.title = title;
-        this.presenters = presenters;
+        this.presenters = Collections.unmodifiableList(presenters);
     }
 
     public Session(SessionCode code, String title, Presenter... presenters) {
