@@ -44,4 +44,12 @@ public class Session {
     public int hashCode() {
         return Objects.hash(code, title, presenters);
     }
+
+    public Session withPresenters(List<Presenter> newLineUp) {
+        return new Session(code, title, newLineUp);
+    }
+
+    public Session withTitle(String newTitle) {
+        return new Session(code, newTitle, presenters);
+    }
 }

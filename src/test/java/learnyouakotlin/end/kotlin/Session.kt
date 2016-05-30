@@ -6,6 +6,9 @@ data class Session(val code: SessionCode, val title: String, val presenters: Lis
     }
 }
 
+fun Session.withPresenters(newLineUp: List<Presenter>) = copy(presenters = newLineUp)
+fun Session.withTitle(newTitle: String) = copy(title = newTitle)
+
 data class Presenter(val name: String) {
     override fun toString() = name
 }
