@@ -1,13 +1,15 @@
 package learnyouakotlin.end.kotlin
 
 
-data class Session(val code: SessionCode, val title: String, val presenters: List<Presenter>) {
-    constructor(code: SessionCode, title: String, vararg presenters: Presenter) : this(code, title, listOf(*presenters)) {
+data class Session(val code: SessionCode, val title: String, val subtitle: String? = null, val presenters: List<Presenter>) {
+    constructor(code: SessionCode, title: String, subtitle: String? = null, vararg presenters: Presenter)
+    : this(code, title, subtitle, listOf(*presenters)) {
     }
 }
 
 fun Session.withPresenters(newLineUp: List<Presenter>) = copy(presenters = newLineUp)
 fun Session.withTitle(newTitle: String) = copy(title = newTitle)
+fun Session.withSubtitle(newSubtitle: String?) = copy(subtitle = newSubtitle)
 
 data class Presenter(val name: String) {
     override fun toString() = name
@@ -25,3 +27,4 @@ data class SessionCode(private val repr: Int) {
                 ?.let { SessionCode(it) }
     }
 }
+

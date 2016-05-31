@@ -8,12 +8,14 @@ import learnyouakotlin.end.kotlin.Result.Success
 fun Session.asJson() = obj(
     "code" of code.toString(),
     "title" of title,
+    subtitle ?.let { "subtitle" of it },
     "presenters" of array(presenters, Presenter::asJson))
 
 fun JsonNode.toSession() = apply(::Session,
     path("code").toSessionCode(),
     path("title").asNonblankText(),
-    path("presenters").flatMap(JsonNode::toPresenter))
+    path("subtitle").asOptionalNonblankText(),
+    path("presenters").all(JsonNode::toPresenter))
 
 
 fun Presenter.asJson() = obj("name" of name)
@@ -24,6 +26,7 @@ fun JsonNode.toSessionCode() = this.asText()
     ?.let { Success(it) }
     ?: jsonFailure("could not parse ${asText()} as SessionCode")
 
+fun JsonNode.asOptionalNonblankText() = if (isNull || isMissingNode) Result.Success(null) else asNonblankText()
 
 fun JsonNode.asNonblankText() = asText().let {
     when {
@@ -33,7 +36,7 @@ fun JsonNode.asNonblankText() = asText().let {
 }
 
 private fun <T> JsonNode.map(transform: (JsonNode) -> T) = elements().asSequence().map(transform).toList()
-private fun <T> JsonNode.flatMap(transform: (JsonNode) -> Result<T>) = map(transform).flatten()
+private fun <T> JsonNode.all(transform: (JsonNode) -> Result<T>) = map(transform).flatten()
 
 private fun jsonFailure(message: String) = Failure(JsonMappingException(null, message))
 

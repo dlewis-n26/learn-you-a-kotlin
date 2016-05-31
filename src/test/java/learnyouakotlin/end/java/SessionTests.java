@@ -25,13 +25,13 @@ public class SessionTests {
 
     @Test
     public void can_change_subtitle() {
-        assertThat(original.withSubitle("The Subtitle"), equalTo(
+        assertThat(original.withSubtitle("The Subtitle"), equalTo(
                 new Session(code, "The Title", "The Subtitle", new Presenter("Alice"))));
     }
 
     @Test
     public void can_remove_subtitle() {
-        assertThat(original.withSubitle("The Subtitle").withSubitle(null), equalTo(
+        assertThat(original.withSubtitle("The Subtitle").withSubtitle(null), equalTo(
                 new Session(code, "The Title", null, new Presenter("Alice"))));
     }
 }

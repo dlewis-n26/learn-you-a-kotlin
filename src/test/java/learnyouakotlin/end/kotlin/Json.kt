@@ -18,12 +18,12 @@ infix fun String.of(textValue: String): Pair<String, JsonNode> {
 
 infix fun String.of(value: JsonNode) = this to value
 
-fun obj(props: Iterable<Pair<String, JsonNode>>) = nodes.objectNode().apply {
-    props.forEach { p -> set(p.first, p.second) }
+fun obj(props: Iterable<Pair<String, JsonNode>?>) = nodes.objectNode().apply {
+    props.forEach { p -> if (p != null) set(p.first, p.second) }
 }
 
-fun obj(vararg props: Pair<String, JsonNode>): ObjectNode {
-    return obj(asList<Pair<String, JsonNode>>(*props))
+fun obj(vararg props: Pair<String, JsonNode>?): ObjectNode {
+    return obj(props.toList())
 }
 
 fun array(elements: Iterable<JsonNode>) = nodes.arrayNode().apply { elements.forEach { add(it) } }
@@ -37,5 +37,3 @@ fun JsonNode.asStableJsonString(): String {
         throw IllegalArgumentException("failed to convert JsonNode to JSON string", e)
     }
 }
-
-
