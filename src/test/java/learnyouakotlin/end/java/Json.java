@@ -7,17 +7,13 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import static com.fasterxml.jackson.databind.SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS;
 import static java.util.Arrays.asList;
-import static java.util.Collections.singleton;
 import static java.util.stream.Collectors.toList;
 
 public class Json {
@@ -50,13 +46,17 @@ public class Json {
     public static ObjectNode obj(Iterable<Map.Entry<String, JsonNode>> props) {
         ObjectNode object = nodes.objectNode();
         props.forEach(p -> {
-            if (p != null) object.set(p.getKey(), p.getValue());
+            // p can be null, but no way to annotate the Map.Entry within the Iterable
+            if (p != null) {
+                object.set(p.getKey(), p.getValue());
+            }
         });
         return object;
     }
 
     @SafeVarargs
     public static ObjectNode obj(Map.Entry<String, JsonNode>... props) {
+        // Elements of props can be null, but no way to annotate the parameter with @Nullable to indicate that
         return obj(asList(props));
     }
 
