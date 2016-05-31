@@ -28,20 +28,23 @@ public class Json {
         return prop(name, nodes.textNode(textValue));
     }
 
-    public static Map.Entry<String, JsonNode> prop(String name, int intValue) {
-        return prop(name, nodes.numberNode(intValue));
-    }
-
-    public static Map.Entry<String, JsonNode> prop(String name, @Nullable Integer intValue) {
-        return prop(name, nodes.numberNode(intValue));
-    }
-
-    public static Map.Entry<String, JsonNode> prop(String name, boolean boolValue) {
-        return prop(name, nodes.booleanNode(boolValue));
-    }
-
     public static Map.Entry<String, JsonNode> prop(String name, JsonNode value) {
-        return Collections.singletonMap(name, value).entrySet().iterator().next();
+        return new Map.Entry<String, JsonNode>() {
+            @Override
+            public String getKey() {
+                return name;
+            }
+
+            @Override
+            public JsonNode getValue() {
+                return value;
+            }
+
+            @Override
+            public JsonNode setValue(JsonNode value) {
+                throw new UnsupportedOperationException("unmodifiable");
+            }
+        };
     }
 
     public static ObjectNode obj(Iterable<Map.Entry<String, JsonNode>> props) {
@@ -61,14 +64,6 @@ public class Json {
         ArrayNode array = nodes.arrayNode();
         elements.forEach(array::add);
         return array;
-    }
-
-    public static ArrayNode array(JsonNode singleElement) {
-        return array(singleton(singleElement));
-    }
-
-    public static ArrayNode array(JsonNode... elements) {
-        return array(asList(elements));
     }
 
     public static <T> ArrayNode array(List<T> elements, Function<T, JsonNode> fn) {
