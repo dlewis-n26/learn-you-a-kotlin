@@ -1,4 +1,4 @@
-package learnyouakotlin.end.kotlin
+package learnyouakotlin.solution
 
 import java.util.*
 

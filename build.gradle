@@ -13,6 +13,18 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
+
+sourceSets {
+    test {
+        java {
+            srcDir 'exercise'
+            srcDir 'sample-solution'
+        }
+    }
+}
+
+
+
 repositories {
     mavenCentral()
 }

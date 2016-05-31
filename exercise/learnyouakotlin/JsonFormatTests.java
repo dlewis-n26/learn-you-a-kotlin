@@ -1,4 +1,4 @@
-package learnyouakotlin.end.java;
+package learnyouakotlin;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -9,14 +9,14 @@ import org.junit.Test;
 import java.io.File;
 
 import static com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactory;
-import static learnyouakotlin.end.java.JsonFormat.sessionAsJson;
-import static learnyouakotlin.end.java.JsonFormat.sessionFromJson;
+import static learnyouakotlin.JsonFormat.sessionAsJson;
+import static learnyouakotlin.JsonFormat.sessionFromJson;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class JsonFormatTests {
     @Rule
-    public final ApprovalsRule approval = new ApprovalsRule(fileSystemApproverFactory(new File("src/test/java")));
+    public final ApprovalsRule approval = new ApprovalsRule(fileSystemApproverFactory(new File("exercise")));
 
     @Test
     public void session_to_json() {

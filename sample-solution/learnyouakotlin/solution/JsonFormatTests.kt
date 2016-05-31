@@ -1,10 +1,10 @@
-package learnyouakotlin.end.kotlin
+package learnyouakotlin.solution
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactory
 import com.oneeyedmen.okeydoke.junit.ApprovalsRule
-import learnyouakotlin.end.java.Json
-import learnyouakotlin.end.kotlin.Result.Success
+import learnyouakotlin.Json
+import learnyouakotlin.solution.Result.Success
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Rule
@@ -14,7 +14,7 @@ import java.io.File
 class JsonFormatTests {
     @Rule
     @JvmField
-    val approval = ApprovalsRule(fileSystemApproverFactory(File("src/test/java")))
+    val approval = ApprovalsRule(fileSystemApproverFactory(File("sample-solution")))
     
     @Test
     fun session_to_json() {

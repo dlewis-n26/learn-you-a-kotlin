@@ -1,4 +1,4 @@
-package learnyouakotlin.end.java;
+package learnyouakotlin;
 
 import javax.annotation.Nullable;
 import java.util.Collections;

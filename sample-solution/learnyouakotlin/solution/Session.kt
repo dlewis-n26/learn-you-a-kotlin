@@ -1,4 +1,4 @@
-package learnyouakotlin.end.kotlin
+package learnyouakotlin.solution
 
 
 data class Session(val code: SessionCode, val title: String, val subtitle: String? = null, val presenters: List<Presenter>) {

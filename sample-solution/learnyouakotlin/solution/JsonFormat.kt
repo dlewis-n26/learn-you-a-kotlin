@@ -1,15 +1,15 @@
-package learnyouakotlin.end.kotlin
+package learnyouakotlin.solution
 
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.databind.JsonNode
-import learnyouakotlin.end.kotlin.Result.Failure
-import learnyouakotlin.end.kotlin.Result.Success
+import learnyouakotlin.solution.Result.Failure
+import learnyouakotlin.solution.Result.Success
 
-fun Session.asJson() = obj(
+fun learnyouakotlin.solution.Session.asJson() = learnyouakotlin.solution.obj(
     "code" of code.toString(),
     "title" of title,
-    subtitle ?.let { "subtitle" of it },
-    "presenters" of array(presenters, Presenter::asJson))
+    subtitle?.let { "subtitle" of it },
+    "presenters" of learnyouakotlin.solution.array(presenters, learnyouakotlin.solution.Presenter::asJson))
 
 fun JsonNode.toSession() = apply(::Session,
     path("code").toSessionCode(),
