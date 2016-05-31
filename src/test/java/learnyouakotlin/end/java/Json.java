@@ -43,15 +43,15 @@ public class Json {
         return Collections.singletonMap(name, value).entrySet().iterator().next();
     }
 
-    public static ObjectNode object(Iterable<Map.Entry<String, JsonNode>> props) {
+    public static ObjectNode obj(Iterable<Map.Entry<String, JsonNode>> props) {
         ObjectNode object = nodes.objectNode();
         props.forEach(p -> object.set(p.getKey(), p.getValue()));
         return object;
     }
 
     @SafeVarargs
-    public static ObjectNode object(Map.Entry<String, JsonNode>... props) {
-        return object(asList(props));
+    public static ObjectNode obj(Map.Entry<String, JsonNode>... props) {
+        return obj(asList(props));
     }
 
     public static ArrayNode array(Iterable<JsonNode> elements) {
@@ -68,7 +68,7 @@ public class Json {
         return array(asList(elements));
     }
 
-    public static <T> ArrayNode mapToJsonArray(List<T> elements, Function<T, JsonNode> fn) {
+    public static <T> ArrayNode array(List<T> elements, Function<T, JsonNode> fn) {
         return array(elements.stream().map(fn).collect(toList()));
     }
 
