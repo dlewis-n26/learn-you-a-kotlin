@@ -16,10 +16,6 @@ infix fun String.of(textValue: String): Pair<String, JsonNode> {
     return of(nodes.textNode(textValue))
 }
 
-infix fun String.of(boolValue: Boolean): Pair<String, JsonNode> {
-    return of(nodes.booleanNode(boolValue))
-}
-
 infix fun String.of(value: JsonNode) = this to value
 
 fun obj(props: Iterable<Pair<String, JsonNode>>) = nodes.objectNode().apply {
@@ -31,8 +27,6 @@ fun obj(vararg props: Pair<String, JsonNode>): ObjectNode {
 }
 
 fun array(elements: Iterable<JsonNode>) = nodes.arrayNode().apply { elements.forEach { add(it) } }
-fun array(singleElement: JsonNode) = array(setOf(singleElement))
-fun array(vararg elements: JsonNode) = array(asList(*elements))
 fun <T> array(elements: List<T>, fn: (T) -> JsonNode) = array(elements.map(fn))
 
 fun JsonNode.asStableJsonString(): String {
