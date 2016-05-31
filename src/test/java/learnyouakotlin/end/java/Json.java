@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import static com.fasterxml.jackson.databind.SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS;
@@ -45,7 +46,9 @@ public class Json {
 
     public static ObjectNode obj(Iterable<Map.Entry<String, JsonNode>> props) {
         ObjectNode object = nodes.objectNode();
-        props.forEach(p -> object.set(p.getKey(), p.getValue()));
+        props.forEach(p -> {
+            if (p != null) object.set(p.getKey(), p.getValue());
+        });
         return object;
     }
 
