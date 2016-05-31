@@ -59,7 +59,7 @@ public class Session {
         return new Session(code, newTitle, subtitle, presenters);
     }
 
-    public Session withSubitle(String newSubtitle) {
-        return new Session(code, newSubtitle, subtitle, presenters);
+    public Session withSubitle(@Nullable String newSubtitle) {
+        return new Session(code, title, newSubtitle, presenters);
     }
 }
