@@ -26,6 +26,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'com.natpryce:hamkrest:1.1.0.0'
     testCompile 'com.oneeyedmen:okeydoke:1.0.4'
+    testCompile 'com.natpryce:snodge:2.1.2.2'
 }
 
 
