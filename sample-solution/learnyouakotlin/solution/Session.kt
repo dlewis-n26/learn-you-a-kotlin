@@ -19,12 +19,9 @@ fun <T> T.given(f: (T) -> Boolean) = if (f(this)) this else null
 
 data class SessionCode(private val repr: Int) {
     override fun toString() = repr.toString()
-
-    companion object {
-        fun parse(s: String) =
-            try { Integer.valueOf(s) } catch (e: NumberFormatException) { null }
-                ?.given { it > 0 }
-                ?.let { SessionCode(it) }
-    }
 }
 
+fun String.toSessionCode() =
+    try { Integer.valueOf(this) } catch (e: NumberFormatException) { null }
+    ?.given { it > 0 }
+    ?.let { SessionCode(it) }

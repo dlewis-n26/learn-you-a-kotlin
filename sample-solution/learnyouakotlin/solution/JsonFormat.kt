@@ -22,7 +22,7 @@ fun Presenter.asJson() = obj("name" of name)
 fun JsonNode.toPresenter() = apply(::Presenter, path("name").asNonblankText())
 
 fun JsonNode.toSessionCode() = this.asText()
-    .let { SessionCode.parse(it) }
+    .let { it.toSessionCode() }
     ?.let { Success(it) }
     ?: jsonFailure("could not parse ${asText()} as SessionCode")
 
