@@ -56,7 +56,8 @@ public class Json {
 
     @SafeVarargs
     public static ObjectNode obj(Map.Entry<String, JsonNode>... props) {
-        // Elements of props can be null, but no way to annotate the parameter with @Nullable to indicate that
+        // Elements of props may be null, but there's no way to use annotations to indicate that. Annotating the
+        // props parameter with @Nullable means that the whole array may be null
         return obj(asList(props));
     }
 
