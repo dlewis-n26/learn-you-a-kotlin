@@ -8,9 +8,9 @@ import javax.annotation.Nullable;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Spliterator;
 import java.util.stream.Collectors;
 
-import static java.util.Spliterator.ORDERED;
 import static java.util.Spliterators.spliterator;
 import static java.util.stream.StreamSupport.stream;
 import static learnyouakotlin.Json.*;
@@ -31,15 +31,19 @@ public class JsonFormat {
             @Nullable String subtitle = optionalNonBlankText(json.path("subtitle"));
 
             JsonNode authorsNode = json.path("presenters");
-            List<Presenter> authors = stream(spliterator(authorsNode.elements(), authorsNode.size(), ORDERED), false)
+            List<Presenter> presenters = stream(spliterator(authorsNode::elements), false)
                     .map(JsonFormat::presenterFromJson)
                     .collect(Collectors.toList());
 
-            return new Session(code, title, subtitle, authors);
+            return new Session(code, title, subtitle, presenters);
 
         } catch (ParseException e) {
             throw new JsonMappingException(null, "failed to parse Session from JSON", e);
         }
+    }
+
+    private static Spliterator<JsonNode> spliterator(Iterable<JsonNode> elements) {
+        return elements.spliterator();
     }
 
     private static ObjectNode presenterAsJson(Presenter p) {
