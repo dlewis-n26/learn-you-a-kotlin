@@ -1,6 +1,7 @@
 package learnyouakotlin;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +19,7 @@ public class Session {
         this.code = code;
         this.title = title;
         this.subtitle = subtitle;
-        this.presenters = Collections.unmodifiableList(presenters);
+        this.presenters = Collections.unmodifiableList(new ArrayList<>(presenters));
     }
 
     public Session(SessionCode code, String title, @Nullable String subtitle, Presenter... presenters) {
