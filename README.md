@@ -1,18 +1,23 @@
 Exercise for the tutorial "Learn You a Kotlin For All The Good It Will Do You"
 ==============================================================================
 
+First create a new branch. Check in after each change.  This lets you
+easily show how auto-converting code to Kotlin affects how its API
+looks when used from Java
+
 Suggested progress
 
 * Auto-convert from Java to Kotlin & clean-up
   * Presenter
-    * convert to a data class
-  * SessionCode
     * convert to a data class
   * Session
     * convert to a data class
       * subtitle is a `String?`
     * No need to wrap List in unmodifiableList: discuss List/MutableList split
     * move withXxx methods out of class into extension methods
+  * SessionCode
+    * convert to a data class
+    * mark up companion object methods as @JvmStatic and revert changed lines in Java code.
   * Json
     * move functions to module scope
     * use nullable types to indicate that array *elements* can be null
