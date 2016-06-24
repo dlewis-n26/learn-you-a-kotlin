@@ -2,10 +2,6 @@ package learnyouakotlin.solution
 
 import java.util.*
 
-data class TList<T,U>(val value: T, val next: U? = null)
-infix fun <T: Any, U: Any> T.then(other: U) = TList(this, TList<U,Nothing>(other, null))
-
-
 sealed class Result<out T> {
     abstract fun <U> map(f: (T) -> U): Result<U>
     abstract fun <U> flatMap(f: (T) -> Result<U>): Result<U>
