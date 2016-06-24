@@ -10,26 +10,24 @@ import static java.util.Arrays.asList;
 
 
 public class Session {
-    public final SessionCode code;
     public final String title;
-    @Nullable public final String subtitle;
+    @Nullable
+    public final String subtitle;
     public final List<Presenter> presenters;
 
-    public Session(SessionCode code, String title, @Nullable String subtitle, List<Presenter> presenters) {
-        this.code = code;
+    public Session(String title, @Nullable String subtitle, List<Presenter> presenters) {
         this.title = title;
         this.subtitle = subtitle;
         this.presenters = Collections.unmodifiableList(new ArrayList<>(presenters));
     }
 
-    public Session(SessionCode code, String title, @Nullable String subtitle, Presenter... presenters) {
-        this(code, title, subtitle, asList(presenters));
+    public Session(String title, @Nullable String subtitle, Presenter... presenters) {
+        this(title, subtitle, asList(presenters));
     }
 
     @Override
     public String toString() {
         return "Session{" +
-                "code=" + code +
                 ", title='" + title + '\'' +
                 (subtitle == null ? "" : ", subtitle='" + subtitle + '\'') +
                 ", presenters=" + presenters +
@@ -41,26 +39,25 @@ public class Session {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Session session = (Session) o;
-        return Objects.equals(code, session.code) &&
-                Objects.equals(title, session.title) &&
+        return Objects.equals(title, session.title) &&
                 Objects.equals(subtitle, session.subtitle) &&
                 Objects.equals(presenters, session.presenters);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, title, subtitle, presenters);
+        return Objects.hash(title, subtitle, presenters);
     }
 
     public Session withPresenters(List<Presenter> newLineUp) {
-        return new Session(code, title, subtitle, newLineUp);
+        return new Session(title, subtitle, newLineUp);
     }
 
     public Session withTitle(String newTitle) {
-        return new Session(code, newTitle, subtitle, presenters);
+        return new Session(newTitle, subtitle, presenters);
     }
 
     public Session withSubtitle(@Nullable String newSubtitle) {
-        return new Session(code, title, newSubtitle, presenters);
+        return new Session(title, newSubtitle, presenters);
     }
 }

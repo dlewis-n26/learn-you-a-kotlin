@@ -20,7 +20,7 @@ public class JsonFormatTests {
 
     @Test
     public void session_to_json() {
-        Session session = new Session(SessionCode.of(1),
+        Session session = new Session(
                 "Learn You a Kotlin For All The Good It Will Do You",
                 null,
                 new Presenter("Duncan McGregor"),
@@ -33,7 +33,7 @@ public class JsonFormatTests {
 
     @Test
     public void session_with_subtitle_to_json() {
-        Session session = new Session(SessionCode.of(2),
+        Session session = new Session(
                 "Scrapheap Challenge",
                 "A Workshop in Postmodern Programming",
                 new Presenter("Ivan Moore"));
@@ -45,7 +45,7 @@ public class JsonFormatTests {
 
     @Test
     public void session_to_and_from_json() throws JsonMappingException {
-        Session original = new Session(SessionCode.of(3),
+        Session original = new Session(
                 "Working Effectively with Legacy Tests",
                 null,
                 new Presenter("Nat Pryce"),

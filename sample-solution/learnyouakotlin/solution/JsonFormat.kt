@@ -3,17 +3,14 @@ package learnyouakotlin.solution
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.databind.JsonNode
 import learnyouakotlin.solution.Result.Failure
-import learnyouakotlin.solution.Result.Success
 
-fun learnyouakotlin.solution.Session.asJson() = obj(
-    "code" of code.toString(),
+fun Session.asJson() = obj(
     "title" of title,
     subtitle?.let { "subtitle" of it },
     "slots" of obj("first" of slots.start, "last" of slots.endInclusive),
     "presenters" of array(presenters, learnyouakotlin.solution.Presenter::asJson))
 
 fun JsonNode.toSession() = apply(::Session,
-    path("code").toSessionCode(),
     path("title").asNonblankText(),
     path("subtitle").asOptionalNonblankText(),
     path("slots").toIntRange(),
@@ -22,10 +19,6 @@ fun JsonNode.toSession() = apply(::Session,
 
 fun Presenter.asJson() = obj("name" of name)
 fun JsonNode.toPresenter() = apply(::Presenter, path("name").asNonblankText())
-
-fun JsonNode.toSessionCode() = this.asText().toSessionCode()
-    ?.let { Success(it) }
-    ?: jsonFailure("could not parse ${asText()} as SessionCode")
 
 fun JsonNode.asOptionalNonblankText() = if (isNull || isMissingNode) Result.Success(null) else asNonblankText()
 

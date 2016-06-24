@@ -16,7 +16,7 @@ class JsonFormatTests {
     
     @Test
     fun session_to_json() {
-        val session = Session(SessionCode(1),
+        val session = Session(
             "Learn You a Kotlin For All The Good It Will Do You",
             null,
             1 .. 2,
@@ -28,7 +28,7 @@ class JsonFormatTests {
 
     @Test
     fun session_with_subtitle_to_json() {
-        val session = Session(SessionCode(2),
+        val session = Session(
             "Scrapheap Challenge",
             "A Workshop in Postmodern Programming",
             3..3,
@@ -39,7 +39,8 @@ class JsonFormatTests {
 
     @Test
     fun session_to_and_from_json() {
-        val original = Session(SessionCode(2), "Working Effectively with Legacy Tests", null,
+        val original = Session(
+            "Working Effectively with Legacy Tests", null,
             4..5,
             Presenter("Nat Pryce"),
             Presenter("Duncan McGregor"))
