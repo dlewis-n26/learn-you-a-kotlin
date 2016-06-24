@@ -1,10 +1,9 @@
 package learnyouakotlin.solution
 
 
-data class Session(val code: SessionCode, val title: String, val subtitle: String? = null, val presenters: List<Presenter>) {
-    constructor(code: SessionCode, title: String, subtitle: String? = null, vararg presenters: Presenter)
-    : this(code, title, subtitle, listOf(*presenters)) {
-    }
+data class Session(val code: SessionCode, val title: String, val subtitle: String? = null, val slots: IntRange, val presenters: List<Presenter>) {
+    constructor(code: SessionCode, title: String, subtitle: String? = null, slots: IntRange, vararg presenters: Presenter) :
+        this(code, title, subtitle, slots, listOf(*presenters))
 }
 
 fun Session.withPresenters(newLineUp: List<Presenter>) = copy(presenters = newLineUp)
