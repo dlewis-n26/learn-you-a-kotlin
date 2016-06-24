@@ -51,13 +51,13 @@ fun main(args: Array<String>) {
     val rng = SecureRandom()
     val schedule = rng.sample(allSchedules(mondaySessions))
 
-    if (schedule == null) {
-        println("could not choose a schedule")
-    }
-    else {
-        schedule.forEach { session ->
+    if (schedule != null) {
+        for (session in schedule) {
             println("Slot ${session.slots.start}: ${session.title} ${if (session.presenters.isEmpty()) "" else "by ${session.presenters.joinToString(", ")}"}")
         }
+    }
+    else {
+        println("could not choose a schedule")
     }
 }
 

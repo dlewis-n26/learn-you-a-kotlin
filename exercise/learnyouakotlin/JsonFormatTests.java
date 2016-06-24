@@ -23,6 +23,7 @@ public class JsonFormatTests {
         Session session = new Session(
                 "Learn You a Kotlin For All The Good It Will Do You",
                 null,
+                new Slots(1,2),
                 new Presenter("Duncan McGregor"),
                 new Presenter("Nat Pryce"));
 
@@ -36,6 +37,7 @@ public class JsonFormatTests {
         Session session = new Session(
                 "Scrapheap Challenge",
                 "A Workshop in Postmodern Programming",
+                new Slots(3,3),
                 new Presenter("Ivan Moore"));
 
         JsonNode json = sessionAsJson(session);
@@ -48,6 +50,7 @@ public class JsonFormatTests {
         Session original = new Session(
                 "Working Effectively with Legacy Tests",
                 null,
+                new Slots(1,2),
                 new Presenter("Nat Pryce"),
                 new Presenter("Duncan McGregor"));
 

@@ -13,25 +13,18 @@ public class Session {
     public final String title;
     @Nullable
     public final String subtitle;
+    public final Slots slots;
     public final List<Presenter> presenters;
 
-    public Session(String title, @Nullable String subtitle, List<Presenter> presenters) {
+    public Session(String title, @Nullable String subtitle, Slots slots, List<Presenter> presenters) {
         this.title = title;
         this.subtitle = subtitle;
+        this.slots = slots;
         this.presenters = Collections.unmodifiableList(new ArrayList<>(presenters));
     }
 
-    public Session(String title, @Nullable String subtitle, Presenter... presenters) {
-        this(title, subtitle, asList(presenters));
-    }
-
-    @Override
-    public String toString() {
-        return "Session{" +
-                ", title='" + title + '\'' +
-                (subtitle == null ? "" : ", subtitle='" + subtitle + '\'') +
-                ", presenters=" + presenters +
-                '}';
+    public Session(String title, @Nullable String subtitle, Slots slots, Presenter... presenters) {
+        this(title, subtitle, slots, asList(presenters));
     }
 
     @Override
@@ -41,23 +34,34 @@ public class Session {
         Session session = (Session) o;
         return Objects.equals(title, session.title) &&
                 Objects.equals(subtitle, session.subtitle) &&
+                Objects.equals(slots, session.slots) &&
                 Objects.equals(presenters, session.presenters);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, subtitle, presenters);
+        return Objects.hash(title, subtitle, slots, presenters);
+    }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "title='" + title + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", slots=" + slots +
+                ", presenters=" + presenters +
+                '}';
     }
 
     public Session withPresenters(List<Presenter> newLineUp) {
-        return new Session(title, subtitle, newLineUp);
+        return new Session(title, subtitle, slots, newLineUp);
     }
 
     public Session withTitle(String newTitle) {
-        return new Session(newTitle, subtitle, presenters);
+        return new Session(newTitle, subtitle, slots, presenters);
     }
 
     public Session withSubtitle(@Nullable String newSubtitle) {
-        return new Session(title, newSubtitle, presenters);
+        return new Session(title, newSubtitle, slots, presenters);
     }
 }

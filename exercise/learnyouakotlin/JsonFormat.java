@@ -18,6 +18,10 @@ public class JsonFormat {
         return obj(
                 prop("title", session.title),
                 session.subtitle == null ? null : prop("subtitle", session.subtitle),
+                prop("slots", obj(
+                        prop("first", session.slots.start),
+                        prop("last", session.slots.endInclusive)
+                )),
                 prop("presenters", array(session.presenters, JsonFormat::presenterAsJson)));
     }
 
@@ -30,7 +34,7 @@ public class JsonFormat {
                 .map(JsonFormat::presenterFromJson)
                 .collect(Collectors.toList());
 
-        return new Session(title, subtitle, presenters);
+        return new Session(title, subtitle, new Slots(1,2), presenters);
 
     }
 

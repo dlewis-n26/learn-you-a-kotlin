@@ -3,9 +3,7 @@ package learnyouakotlin;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.*;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +19,11 @@ public class Json {
     private static final ObjectMapper stableMapper = new ObjectMapper().enable(INDENT_OUTPUT, ORDER_MAP_ENTRIES_BY_KEYS);
 
     public static Map.Entry<String, JsonNode> prop(String name, String textValue) {
-        return prop(name, nodes.textNode(textValue));
+        return prop(name, new TextNode(textValue));
+    }
+
+    public static Map.Entry<String, JsonNode> prop(String name, int intValue) {
+        return prop(name, new IntNode(intValue));
     }
 
     public static Map.Entry<String, JsonNode> prop(String name, JsonNode value) {
@@ -44,7 +46,7 @@ public class Json {
     }
 
     public static ObjectNode obj(Iterable<Map.Entry<String, JsonNode>> props) {
-        ObjectNode object = nodes.objectNode();
+        ObjectNode object = new ObjectNode(null);
         props.forEach(p -> {
             // p can be null, but no way to annotate the Map.Entry within the Iterable
             if (p != null) {
@@ -62,7 +64,7 @@ public class Json {
     }
 
     public static ArrayNode array(Iterable<JsonNode> elements) {
-        ArrayNode array = nodes.arrayNode();
+        ArrayNode array = new ArrayNode(null);
         elements.forEach(array::add);
         return array;
     }
