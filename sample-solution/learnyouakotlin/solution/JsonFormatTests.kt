@@ -12,7 +12,7 @@ import java.io.File
 class JsonFormatTests {
     @Rule
     @JvmField
-    val approval = ApprovalsRule(fileSystemApproverFactory(File("sample-solution")))
+    val approval = ApprovalsRule.fileSystemRule("sample-solution")
     
     @Test
     fun session_to_json() {

@@ -16,7 +16,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class JsonFormatTests {
     @Rule
-    public final ApprovalsRule approval = new ApprovalsRule(fileSystemApproverFactory(new File("exercise")));
+    public final ApprovalsRule approval = ApprovalsRule.fileSystemRule("exercise");
 
     @Test
     public void session_to_json() {
