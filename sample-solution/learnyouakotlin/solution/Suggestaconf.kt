@@ -1,5 +1,11 @@
 package learnyouakotlin.solution
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT
+import com.sun.net.httpserver.HttpServer
+import java.net.HttpURLConnection.HTTP_NOT_FOUND
+import java.net.HttpURLConnection.HTTP_OK
+import java.net.InetSocketAddress
 import java.security.SecureRandom
 
 private val no_subtitle = null
@@ -49,15 +55,29 @@ val mondaySessions = setOf(
 
 fun main(args: Array<String>) {
     val rng = SecureRandom()
-    val schedule = rng.sample(allSchedules(mondaySessions))
+    val objectMapper = ObjectMapper().enable(INDENT_OUTPUT)
 
-    if (schedule != null) {
-        for (session in schedule) {
-            println("Slot ${session.slots.start}: ${session.title} ${if (session.presenters.isEmpty()) "" else "by ${session.presenters.joinToString(", ")}"}")
+    val server: HttpServer = HttpServer.create().apply {
+        bind(InetSocketAddress("0.0.0.0", 8910), 0)
+        createContext("/monday") { exchange ->
+            val schedule = rng.sample(allSchedules(mondaySessions))
+
+            if (schedule != null) {
+                exchange.responseHeaders["Content-Type"] = "application/json"
+                exchange.sendResponseHeaders(HTTP_OK, 0)
+                exchange.responseBody.use { out ->
+                    objectMapper.writeValue(out, array(schedule, Session::asJson))
+                }
+            }
+            else {
+                exchange.sendResponseHeaders(HTTP_NOT_FOUND, 0)
+            }
+
+            exchange.close()
         }
     }
-    else {
-        println("could not choose a schedule")
-    }
+
+    server.start()
+    println("http://localhost:8910/monday")
 }
 
