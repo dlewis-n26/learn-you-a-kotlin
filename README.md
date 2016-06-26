@@ -7,7 +7,7 @@ looks when used from Java
 
 Suggested progress
 
-* Auto-convert from Java to Kotlin & clean-up
+* Part 1: class syntax and data classes
   * Presenter
     * convert to a data class
   * Session
@@ -15,6 +15,8 @@ Suggested progress
       * subtitle is a `String?`
     * No need to wrap List in unmodifiableList: discuss List/MutableList split
     * move withXxx methods out of class into extension methods
+    
+* Part 2: modules and functions
   * Json
     * move functions to module scope
     * use nullable types to indicate that array *elements* can be null
@@ -22,7 +24,10 @@ Suggested progress
     * move functions to module scope
     * convert to extension methods on domain types and JsonNode
 
-* Address loss of type safety w.r.t. exceptions
+* Part 3: Write new algorithmic code
+  * Implement functions in Scheduling and run Suggestaconf
+
+* Part 4: Address loss of type safety w.r.t. exceptions
   * Make SessionCode::parse return a SessionCode?
   * Introduce a Result<T> algebraic data type (sealed class hierarchy)
   * Make JsonNode.toXxx return Result<Xxx>
