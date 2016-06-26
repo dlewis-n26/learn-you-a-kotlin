@@ -4,10 +4,12 @@ import learnyouakotlin.solution.part1.Session
 import java.util.*
 
 // TODO - make it lazy
-fun allSchedules(iterable: Iterable<Session>): Sequence<List<Session>> {
-    fun allSchedulesFrom(sessions: NavigableMap<Int, List<Session>>, startSlot: Int): List<List<Session>> =
-        sessions.ceilingEntry(startSlot)?.value.orEmpty().flatMap { session ->
-            val laterSchedules = allSchedulesFrom(sessions, session.slots.endInclusive + 1)
+fun allSchedules(sessions: Iterable<Session>): Sequence<List<Session>> {
+    val sessionsByStartTime = TreeMap(sessions.groupBy { it.slots.start })
+
+    fun allSchedulesFrom(startSlot: Int): List<List<Session>> =
+        sessionsByStartTime.ceilingEntry(startSlot)?.value.orEmpty().flatMap { session ->
+            val laterSchedules = allSchedulesFrom(session.slots.endInclusive + 1)
             if (laterSchedules.isEmpty()) {
                 listOf(listOf(session))
             }
@@ -16,7 +18,7 @@ fun allSchedules(iterable: Iterable<Session>): Sequence<List<Session>> {
             }
         }
 
-    return allSchedulesFrom(TreeMap(iterable.groupBy { it.slots.start }), 1).asSequence()
+    return allSchedulesFrom(1).asSequence()
 }
 
 // TODO - implemented weighted reservoir sampling to make selection fair for multi-slot sessions
