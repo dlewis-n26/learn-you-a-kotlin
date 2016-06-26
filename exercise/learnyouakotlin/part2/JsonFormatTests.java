@@ -1,16 +1,17 @@
-package learnyouakotlin;
+package learnyouakotlin.part2;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.oneeyedmen.okeydoke.junit.ApprovalsRule;
+import learnyouakotlin.part1.Slots;
+import learnyouakotlin.part1.Presenter;
+import learnyouakotlin.part1.Session;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.io.File;
-
 import static com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactory;
-import static learnyouakotlin.JsonFormat.sessionAsJson;
-import static learnyouakotlin.JsonFormat.sessionFromJson;
+import static learnyouakotlin.part2.JsonFormat.sessionAsJson;
+import static learnyouakotlin.part2.JsonFormat.sessionFromJson;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 

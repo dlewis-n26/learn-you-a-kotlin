@@ -1,8 +1,11 @@
-package learnyouakotlin.solution
+package learnyouakotlin.solution.part2
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactory
 import com.oneeyedmen.okeydoke.junit.ApprovalsRule
+import learnyouakotlin.solution.part1.Presenter
+import learnyouakotlin.solution.part1.Session
+import learnyouakotlin.solution.part2.asStableJsonString
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Rule
@@ -19,7 +22,7 @@ class JsonFormatTests {
         val session = Session(
             "Learn You a Kotlin For All The Good It Will Do You",
             null,
-            1 .. 2,
+            1..2,
             Presenter("Duncan McGregor"),
             Presenter("Nat Pryce"))
 

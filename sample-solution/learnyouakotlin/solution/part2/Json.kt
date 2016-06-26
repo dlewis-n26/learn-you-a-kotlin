@@ -1,4 +1,4 @@
-package learnyouakotlin.solution
+package learnyouakotlin.solution.part2
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.JsonNode

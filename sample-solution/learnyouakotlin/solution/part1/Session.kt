@@ -1,4 +1,4 @@
-package learnyouakotlin.solution
+package learnyouakotlin.solution.part1
 
 
 data class Session(val title: String, val subtitle: String? = null, val slots: IntRange, val presenters: List<Presenter>) {
@@ -9,8 +9,4 @@ data class Session(val title: String, val subtitle: String? = null, val slots: I
 fun Session.withPresenters(newLineUp: List<Presenter>) = copy(presenters = newLineUp)
 fun Session.withTitle(newTitle: String) = copy(title = newTitle)
 fun Session.withSubtitle(newSubtitle: String?) = copy(subtitle = newSubtitle)
-
-data class Presenter(val name: String) {
-    override fun toString() = name
-}
 

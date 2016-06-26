@@ -1,4 +1,4 @@
-package learnyouakotlin;
+package learnyouakotlin.part1;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

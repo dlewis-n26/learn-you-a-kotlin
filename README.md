@@ -15,9 +15,6 @@ Suggested progress
       * subtitle is a `String?`
     * No need to wrap List in unmodifiableList: discuss List/MutableList split
     * move withXxx methods out of class into extension methods
-  * SessionCode
-    * convert to a data class
-    * mark up companion object methods as @JvmStatic and revert changed lines in Java code.
   * Json
     * move functions to module scope
     * use nullable types to indicate that array *elements* can be null

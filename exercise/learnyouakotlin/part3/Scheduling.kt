@@ -1,5 +1,6 @@
-package learnyouakotlin
+package learnyouakotlin.part3
 
+import learnyouakotlin.part1.Session
 import java.util.*
 
 // implement this

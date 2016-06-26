@@ -1,11 +1,12 @@
-package learnyouakotlin
+package learnyouakotlin.solution.part3
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT
 import com.sun.net.httpserver.HttpServer
-import learnyouakotlin.solution.*
-import learnyouakotlin.solution.Presenter
-import learnyouakotlin.solution.Session
+import learnyouakotlin.solution.part1.Presenter
+import learnyouakotlin.solution.part1.Session
+import learnyouakotlin.solution.part2.array
+import learnyouakotlin.solution.part2.asJson
 import java.net.HttpURLConnection.HTTP_NOT_FOUND
 import java.net.HttpURLConnection.HTTP_OK
 import java.net.InetSocketAddress

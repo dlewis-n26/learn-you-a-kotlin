@@ -1,5 +1,6 @@
-package learnyouakotlin.solution
+package learnyouakotlin.solution.part3
 
+import learnyouakotlin.solution.part1.Session
 import java.util.*
 
 // TODO - make it lazy

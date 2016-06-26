@@ -1,8 +1,11 @@
-package learnyouakotlin;
+package learnyouakotlin.part2;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import learnyouakotlin.part1.Slots;
+import learnyouakotlin.part1.Presenter;
+import learnyouakotlin.part1.Session;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -11,7 +14,7 @@ import java.util.Spliterator;
 import java.util.stream.Collectors;
 
 import static java.util.stream.StreamSupport.stream;
-import static learnyouakotlin.Json.*;
+import static learnyouakotlin.part2.Json.*;
 
 public class JsonFormat {
     public static JsonNode sessionAsJson(Session session) {

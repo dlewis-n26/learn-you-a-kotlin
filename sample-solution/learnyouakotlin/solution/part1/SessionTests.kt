@@ -1,4 +1,4 @@
-package learnyouakotlin.solution
+package learnyouakotlin.solution.part1
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat

@@ -1,14 +1,16 @@
-package learnyouakotlin.solution
+package learnyouakotlin.solution.part2
 
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.databind.JsonNode
-import learnyouakotlin.solution.Result.Failure
+import learnyouakotlin.solution.part1.Presenter
+import learnyouakotlin.solution.part1.Session
+import learnyouakotlin.solution.part2.Result.Failure
 
 fun Session.asJson() = obj(
     "title" of title,
     subtitle?.let { "subtitle" of it },
     "slots" of obj("first" of slots.start, "last" of slots.endInclusive),
-    "presenters" of array(presenters, learnyouakotlin.solution.Presenter::asJson))
+    "presenters" of array(presenters, Presenter::asJson))
 
 fun JsonNode.toSession() = apply(::Session,
     path("title").asNonblankText(),
@@ -36,7 +38,7 @@ fun JsonNode.toIntRange(): Result<IntRange> {
 }
 
 fun JsonNode.toInt() : Result<Int> {
-    return if (isInt) Result.Success(asInt()) else Result.Failure(NumberFormatException("not an int"))
+    return if (isInt) Result.Success(asInt()) else Failure(NumberFormatException("not an int"))
 }
 
 private fun <T> JsonNode.map(transform: (JsonNode) -> T) = elements().asSequence().map(transform).toList()
