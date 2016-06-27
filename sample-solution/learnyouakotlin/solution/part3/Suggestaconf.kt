@@ -68,6 +68,7 @@ fun main(args: Array<String>) {
 
             if (schedule != null) {
                 exchange.responseHeaders["Content-Type"] = "application/json"
+                exchange.responseHeaders["Access-Control-Allow-Origin"] = "*"
                 exchange.sendResponseHeaders(HTTP_OK, 0)
                 exchange.responseBody.use { out ->
                     objectMapper.writeValue(out, array(schedule, Session::asJson))

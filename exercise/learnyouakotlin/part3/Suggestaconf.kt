@@ -3,7 +3,6 @@ package learnyouakotlin.part3
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT
 import com.sun.net.httpserver.HttpServer
-import learnyouakotlin.solution.*
 import learnyouakotlin.solution.part1.Presenter
 import learnyouakotlin.solution.part1.Session
 import learnyouakotlin.solution.part2.array
@@ -69,6 +68,7 @@ fun main(args: Array<String>) {
 
             if (schedule != null) {
                 exchange.responseHeaders["Content-Type"] = "application/json"
+                exchange.responseHeaders["Access-Control-Allow-Origin"] = "*"
                 exchange.sendResponseHeaders(HTTP_OK, 0)
                 exchange.responseBody.use { out ->
                     objectMapper.writeValue(out, array(schedule, Session::asJson))
