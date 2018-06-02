@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.0.2'
+    ext.kotlin_version = '1.2.41'
     ext.jackson_version = '2.7.3'
 
     repositories {
@@ -10,7 +10,6 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
 apply plugin: 'kotlin'
 
 
@@ -24,7 +23,6 @@ sourceSets {
 }
 
 
-
 repositories {
     mavenCentral()
 }
@@ -36,9 +34,8 @@ dependencies {
     compile "com.google.code.findbugs:jsr305:3.0.1"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testCompile 'junit:junit:4.12'
-    testCompile 'com.natpryce:hamkrest:1.1.0.0'
-    testCompile 'com.oneeyedmen:okeydoke:1.0.4'
-    testCompile 'com.natpryce:snodge:2.1.2.2'
+    testCompile 'com.natpryce:hamkrest:1.4.2.2'
+    testCompile 'com.oneeyedmen:okeydoke:1.1.0'
 }
 
 
