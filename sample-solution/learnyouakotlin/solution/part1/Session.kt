@@ -1,8 +1,9 @@
 package learnyouakotlin.solution.part1
 
+typealias Slots = IntRange
 
-data class Session(val title: String, val subtitle: String? = null, val slots: IntRange, val presenters: List<Presenter>) {
-    constructor(title: String, subtitle: String? = null, slots: IntRange, vararg presenters: Presenter)
+data class Session(val title: String, val subtitle: String? = null, val slots: Slots, val presenters: List<Presenter>) {
+    constructor(title: String, subtitle: String? = null, slots: Slots, vararg presenters: Presenter)
     : this(title, subtitle, slots, listOf(*presenters))
 }
 

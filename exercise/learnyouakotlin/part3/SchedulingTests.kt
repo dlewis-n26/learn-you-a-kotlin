@@ -2,8 +2,6 @@ package learnyouakotlin.part3
 
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
-import learnyouakotlin.part1.Session
-import learnyouakotlin.part1.Slots
 import org.junit.Ignore
 import org.junit.Test
 

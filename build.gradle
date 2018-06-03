@@ -1,6 +1,7 @@
 buildscript {
     ext.kotlin_version = '1.2.41'
     ext.jackson_version = '2.7.3'
+    ext.http4k_version = '3.28.0'
 
     repositories {
         mavenCentral()
@@ -10,6 +11,7 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'kotlin'
 
 
@@ -28,10 +30,12 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
     compile "com.google.code.findbugs:jsr305:3.0.1"
+    compile "org.http4k:http4k-core:$http4k_version"
+
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testCompile 'junit:junit:4.12'
     testCompile 'com.natpryce:hamkrest:1.4.2.2'

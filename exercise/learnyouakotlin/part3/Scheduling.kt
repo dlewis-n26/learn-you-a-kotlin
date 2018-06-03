@@ -1,7 +1,11 @@
 package learnyouakotlin.part3
 
-import learnyouakotlin.part1.Session
-import java.util.*
+import java.util.Random
+
+// Remove ("solution.") from these type aliases if you've completed part 1
+typealias Session = learnyouakotlin.solution.part1.Session
+typealias Presenter = learnyouakotlin.solution.part1.Presenter
+typealias Slots = learnyouakotlin.solution.part1.Slots
 
 // implement this
 fun allSchedules(iterable: Iterable<Session>): Sequence<List<Session>> =

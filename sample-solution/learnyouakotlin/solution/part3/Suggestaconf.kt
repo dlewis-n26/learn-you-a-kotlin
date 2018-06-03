@@ -2,19 +2,21 @@ package learnyouakotlin.solution.part3
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT
-import com.sun.net.httpserver.HttpServer
 import learnyouakotlin.solution.part1.Presenter
 import learnyouakotlin.solution.part1.Session
 import learnyouakotlin.solution.part2.array
 import learnyouakotlin.solution.part2.asJson
-import java.net.HttpURLConnection.HTTP_NOT_FOUND
-import java.net.HttpURLConnection.HTTP_OK
-import java.net.InetSocketAddress
+import org.http4k.core.Request
+import org.http4k.core.Response
+import org.http4k.core.Status.Companion.NOT_FOUND
+import org.http4k.core.Status.Companion.OK
+import org.http4k.server.SunHttp
 import java.security.SecureRandom
+import java.util.Random
 
 private val no_subtitle = null
 
-val mondaySessions = setOf(
+val sessions = setOf(
     Session("Opening Plenary", no_subtitle, 1..1),
 
     Session("Play the GetKanban Game", no_subtitle, 2..6,
@@ -57,32 +59,26 @@ val mondaySessions = setOf(
     Session("Birds of a Feather Sessions", no_subtitle, 7..7)
 )
 
-fun main(args: Array<String>) {
-    val rng = SecureRandom()
+fun Suggestaconf(rng: Random): (Request) -> Response {
     val objectMapper = ObjectMapper().enable(INDENT_OUTPUT)
-
-    val server: HttpServer = HttpServer.create().apply {
-        bind(InetSocketAddress("0.0.0.0", 8910), 0)
-        createContext("/monday") { exchange ->
-            val schedule = rng.sample(allSchedules(mondaySessions))
-
-            if (schedule != null) {
-                exchange.responseHeaders["Content-Type"] = "application/json"
-                exchange.responseHeaders["Access-Control-Allow-Origin"] = "*"
-                exchange.sendResponseHeaders(HTTP_OK, 0)
-                exchange.responseBody.use { out ->
-                    objectMapper.writeValue(out, array(schedule, Session::asJson))
-                }
-            }
-            else {
-                exchange.sendResponseHeaders(HTTP_NOT_FOUND, 0)
-            }
-
-            exchange.close()
+    return { _ ->
+        val schedule = rng.sample(allSchedules(sessions))
+        
+        if (schedule != null) {
+            Response(OK)
+                .header("Content-Type", "application/json")
+                .header("Access-Control-Allow-Origin", "*")
+                .body(objectMapper.writeValueAsString(array(schedule, Session::asJson)))
+        }
+        else {
+            Response(NOT_FOUND)
         }
     }
-
-    server.start()
-    println("http://localhost:8910/monday")
 }
 
+fun main(args: Array<String>) {
+    val serverConfig = SunHttp(8910)
+    serverConfig.toServer(Suggestaconf(SecureRandom()))
+        .start()
+    println("http://localhost:${serverConfig.port}/")
+}
