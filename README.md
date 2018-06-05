@@ -14,7 +14,8 @@ Suggested progress
     * convert to a data class
       * subtitle is a `String?`
     * No need to wrap List in unmodifiableList: discuss List/MutableList split
-    * move withXxx methods out of class into extension methods
+    * Try to move withXxx methods out of class into extension methods ... but it makes Java code too ugly
+    * Kotlinise the tests
     
 * Part 2: modules and functions
   * Json
