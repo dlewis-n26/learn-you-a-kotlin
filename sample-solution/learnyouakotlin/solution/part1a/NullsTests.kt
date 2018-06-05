@@ -1,6 +1,7 @@
 package learnyouakotlin.solution.part1a
 
-import learnyouakotlin.part1.Session
+import learnyouakotlin.solution.part1.Session
+import learnyouakotlin.solution.part1.Slots
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -26,8 +27,8 @@ class NullsTests {
 
 }
 
-private val learnYouAKotlin = Session("Learn you a kotlin", "for all the good it will do you", null)
-private val refactoringToStreams = Session("Refactoring to Streams", null, null)
+private val learnYouAKotlin = Session("Learn you a kotlin", "for all the good it will do you", Slots(1,1))
+private val refactoringToStreams = Session("Refactoring to Streams", null, Slots(2,2))
 
 fun subtitleOf(session: Session?): String? = session?.subtitle
 
