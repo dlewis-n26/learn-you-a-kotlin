@@ -3,15 +3,14 @@ package learnyouakotlin.part2;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.oneeyedmen.okeydoke.junit.ApprovalsRule;
-import learnyouakotlin.part1.Slots;
 import learnyouakotlin.part1.Presenter;
 import learnyouakotlin.part1.Session;
+import learnyouakotlin.part1.Slots;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactory;
-import static learnyouakotlin.part2.JsonFormat.sessionAsJson;
 import static learnyouakotlin.part2.JsonFormat.sessionFromJson;
+import static learnyouakotlin.part2.JsonFormat.sessionToJson;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -28,7 +27,7 @@ public class JsonFormatTests {
                 new Presenter("Duncan McGregor"),
                 new Presenter("Nat Pryce"));
 
-        JsonNode json = sessionAsJson(session);
+        JsonNode json = sessionToJson(session);
 
         approval.assertApproved(json, Json::asStableJsonString);
     }
@@ -41,7 +40,7 @@ public class JsonFormatTests {
                 new Slots(3,3),
                 new Presenter("Ivan Moore"));
 
-        JsonNode json = sessionAsJson(session);
+        JsonNode json = sessionToJson(session);
 
         approval.assertApproved(json, Json::asStableJsonString);
     }
@@ -55,7 +54,7 @@ public class JsonFormatTests {
                 new Presenter("Nat Pryce"),
                 new Presenter("Duncan McGregor"));
 
-        Session parsed = sessionFromJson(sessionAsJson(original));
+        Session parsed = sessionFromJson(sessionToJson(original));
 
         assertThat(parsed, equalTo(original));
     }

@@ -17,7 +17,7 @@ import static java.util.stream.StreamSupport.stream;
 import static learnyouakotlin.part2.Json.*;
 
 public class JsonFormat {
-    public static JsonNode sessionAsJson(Session session) {
+    public static JsonNode sessionToJson(Session session) {
         return obj(
             prop("title", session.title),
             session.subtitle == null ? null : prop("subtitle", session.subtitle),
@@ -25,7 +25,7 @@ public class JsonFormat {
                 prop("first", session.slots.start),
                 prop("last", session.slots.endInclusive)
             )),
-            prop("presenters", array(session.presenters, JsonFormat::presenterAsJson)));
+            prop("presenters", array(session.presenters, JsonFormat::presenterToJson)));
     }
 
     public static Session sessionFromJson(JsonNode json) throws JsonMappingException {
@@ -45,7 +45,7 @@ public class JsonFormat {
         return elements.spliterator();
     }
 
-    private static ObjectNode presenterAsJson(Presenter p) {
+    private static ObjectNode presenterToJson(Presenter p) {
         return obj(prop("name", p.name));
     }
 
