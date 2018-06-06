@@ -49,14 +49,32 @@ Suggested progress
     * Before converting to Kotlin...
       * Try annotating `props` param of `obj` method with `@Nullable` so comments about nullability
         are not necessary -- you cannot!
-    * Convert to Kotlin
-      * Use Pair<String,JsonNode> instead of Map.Entry
-    * use nullable types to indicate that array *elements* can be null
-    * move functions to module scope
-    * Convert functions to extension methods where applicable
+    * Convert to Kotlin, applying changes to affected code
+      * look at the changes.  JsonFormat and JsonFormatTests are now FUGLY!  Revert.
+      * We could annotate all methods in Json with @JvmStatic.  Or we could convert the dependent classes first.  Let's do the latter.
+  * JsonFormatTests
+    * Convert to Kotlin AND RERUN THE TESTS
+    * They fail, because JUnit needs `approval` to be a field.  Annotate with @JvmField
   * JsonFormat
+    * Convert to Kotlin & fix compilation errors by removing explicit `Function<...>` SAM notation
+    * Explain `it` variable in lambdas
+    * Convert lambdas to references
+    * Remove @Throws: it's not called from Java any more (we'll talk about type safe error handling later if we have time)
+    * Convert streams code to Kotlin map/flatMap/etc. (Remember that JsonNode is iterable, so has map, etc. defined for it)
     * move functions to module scope
     * convert to extension methods on domain types and JsonNode
+  * Back to Json
+    * Convert to Kotlin
+    * To make it compile:
+      * import kotlin.collections.Map.Entry, not java.util.Map.Entry
+      * Use Kotlin's function type syntax instead of java.util.Function<T,U>
+      * remove some explicit type params that are not needed
+      * use nullable types to indicate that array and iterable *elements* can be null
+    * Use Pair<String,JsonNode> instead of Map.Entry, and then use Kotlin's collection pipeline functions
+    * move functions to module scope
+    * Convert functions to extension methods where applicable
+    * Convert `prop(name,value)` to `name of value` (infix function)
+      * Discuss gradual introduction of mini-DSLs, rather than up-front DSL design which often ends up inflexible
 
 
 * Part 3: Write new algorithmic code
