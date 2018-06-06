@@ -3,9 +3,9 @@ package learnyouakotlin.part2;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import learnyouakotlin.part1.Slots;
 import learnyouakotlin.part1.Presenter;
 import learnyouakotlin.part1.Session;
+import learnyouakotlin.part1.Slots;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -19,13 +19,13 @@ import static learnyouakotlin.part2.Json.*;
 public class JsonFormat {
     public static JsonNode sessionAsJson(Session session) {
         return obj(
-                prop("title", session.title),
-                session.subtitle == null ? null : prop("subtitle", session.subtitle),
-                prop("slots", obj(
-                        prop("first", session.slots.start),
-                        prop("last", session.slots.endInclusive)
-                )),
-                prop("presenters", array(session.presenters, JsonFormat::presenterAsJson)));
+            prop("title", session.title),
+            session.subtitle == null ? null : prop("subtitle", session.subtitle),
+            prop("slots", obj(
+                prop("first", session.slots.start),
+                prop("last", session.slots.endInclusive)
+            )),
+            prop("presenters", array(session.presenters, JsonFormat::presenterAsJson)));
     }
 
     public static Session sessionFromJson(JsonNode json) throws JsonMappingException {
@@ -34,10 +34,10 @@ public class JsonFormat {
 
         JsonNode authorsNode = json.path("presenters");
         List<Presenter> presenters = stream(spliterator(authorsNode::elements), false)
-                .map(JsonFormat::presenterFromJson)
-                .collect(Collectors.toList());
+            .map(JsonFormat::presenterFromJson)
+            .collect(Collectors.toList());
 
-        return new Session(title, subtitle, new Slots(1,2), presenters);
+        return new Session(title, subtitle, new Slots(1, 2), presenters);
 
     }
 

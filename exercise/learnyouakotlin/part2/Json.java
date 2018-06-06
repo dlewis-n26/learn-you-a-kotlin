@@ -32,7 +32,7 @@ public class Json {
     }
 
     public static ObjectNode obj(Iterable<Map.Entry<String, JsonNode>> props) {
-        ObjectNode object = new ObjectNode(null);
+        ObjectNode object = new ObjectNode(nodes);
         props.forEach(p -> {
             // p can be null, but no way to annotate the Map.Entry within the Iterable
             if (p != null) {
@@ -50,7 +50,7 @@ public class Json {
     }
 
     public static ArrayNode array(Iterable<JsonNode> elements) {
-        ArrayNode array = new ArrayNode(null);
+        ArrayNode array = new ArrayNode(nodes);
         elements.forEach(array::add);
         return array;
     }
