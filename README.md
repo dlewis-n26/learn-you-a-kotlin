@@ -26,7 +26,7 @@ Suggested progress
     * Finally convert Slots.  It's all Kotlin!!! That was easy!!1!
 
 
-* Part 1: Null and nullability
+* Part 1a: Null and nullability
 
   * `nulls` test
     * show null-check with bang-bang instead of `as`
@@ -46,8 +46,14 @@ Suggested progress
 
 * Part 2: modules and functions
   * Json
-    * move functions to module scope
+    * Before converting to Kotlin...
+      * Try annotating `props` param of `obj` method with `@Nullable` so comments about nullability
+        are not necessary -- you cannot!
+    * Convert to Kotlin
+      * Use Pair<String,JsonNode> instead of Map.Entry
     * use nullable types to indicate that array *elements* can be null
+    * move functions to module scope
+    * Convert functions to extension methods where applicable
   * JsonFormat
     * move functions to module scope
     * convert to extension methods on domain types and JsonNode
