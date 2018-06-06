@@ -29,7 +29,7 @@ public class JsonFormatTests {
 
         JsonNode json = sessionToJson(session);
 
-        approval.assertApproved(json, Json::asStableJsonString);
+        approval.assertApproved(json, Json::toStableJsonString);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class JsonFormatTests {
 
         JsonNode json = sessionToJson(session);
 
-        approval.assertApproved(json, Json::asStableJsonString);
+        approval.assertApproved(json, Json::toStableJsonString);
     }
 
     @Test

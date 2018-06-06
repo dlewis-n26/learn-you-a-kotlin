@@ -59,7 +59,7 @@ public class Json {
         return array(elements.stream().map(fn).collect(toList()));
     }
 
-    public static String asStableJsonString(JsonNode n) {
+    public static String toStableJsonString(JsonNode n) {
         try {
             return stableMapper.writeValueAsString(n);
         } catch (JsonProcessingException e) {
