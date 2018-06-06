@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.*;
 
-import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -28,7 +28,7 @@ public class Json {
     }
 
     public static Map.Entry<String, JsonNode> prop(String name, JsonNode value) {
-        return new ImmutableMapEntry<>(name, value);
+        return new SimpleImmutableEntry<>(name, value);
     }
 
     public static ObjectNode obj(Iterable<Map.Entry<String, JsonNode>> props) {
@@ -64,16 +64,6 @@ public class Json {
             return stableMapper.writeValueAsString(n);
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException("failed to convert JsonNode to JSON string", e);
-        }
-    }
-
-    private static class ImmutableMapEntry<K, V> extends AbstractMap.SimpleEntry<K,V> {
-        public ImmutableMapEntry(K key, V value) {
-            super(key, value);
-        }
-        @Override
-        public V setValue(V value) {
-            throw new UnsupportedOperationException("unmodifiable");
         }
     }
 }
