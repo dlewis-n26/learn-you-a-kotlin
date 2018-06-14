@@ -9,21 +9,52 @@ Suggested progress
 
 * Part 1: class syntax and data classes
   * Presenter
-    * convert to a data class
+    * note that this an immutable value class with a public final field 
+    * convert to Kotlin
+    * talk through the bits of the Kotlin class - ctor, property, methods
+    * run tests
+    * remove equals, hashcode, to string - show tests fail
+    * make a data class - show tests now pass
+    * remove the unneeded class body
+    * go to checkin - note JsonFormat.java has changed - IntelliJ has changed the field access to a getter - talk about this
+    * checkin
   * Session
+    * note that this is an immutable value class with public fields, one of which is Nullable, and it defensively copies the presenters
+    * also that we have 2 constructors - one a convenience vararg
+    * convert to Kotlin
+    * Note subtitle is a `String?` - talk about nullabilty
+    * Note primary v secondary constructor, observe primary ctor invocation
+    * Note we can have a free property - presenters, initialised in class body
+    * Talk about init block, but then remove it
+    * show tests pass, remove equals etc - show tests fail
     * convert to a data class
-      * subtitle is a `String?`
-    * No need to wrap List in unmodifiableList: discuss List/MutableList split
-    * Talk about extension functions a bit. 
+    * No need to wrap List in unmodifiableList: discuss List/MutableList split, show List defn
+    * Observe spread operator in constructor, remove it and replace with presenters.toList() - discuss asList()
+    * Remove empty ctor body
+    * Convert withXxx methods to single expression  - note lack of new
+    * Convert withXxx methods to invoke .copy (do via add argument names and talk about argument names)
+    * ***** Duncan says don't Talk about extension functions a bit. 
       * Try to move withXxx methods out of class into extension methods ... but it makes Java code too ugly
-    * Kotlinise the tests
-      * talk about "internal"
-      * talk about "var" vs "val"
-      * talk about lack of a "new" keyword -- classes look like, and can be used as, functions
-      * talk about listOf vs Arrays.asList -- Kotlin stdlib has lots of useful collection methods
-    * Move withXxx methods out of class into extension methods ... much nicer in Kotlin, yeah?
-      * Explain extension functions in more detail ... syntactic sugar for static methods
-    * Finally convert Slots.  It's all Kotlin!!! That was easy!!1!
+    * run the tests, check diffs, talk about diffs, checkin
+  * SessionTests  
+    * convert to Kotlin
+    * run tests
+    * talk about "internal"
+    * talk about "var" vs "val"
+    * talk about lack of a "new" keyword -- classes look like, and can be used as, functions
+    * talk about listOf vs Arrays.asList -- Kotlin stdlib has lots of useful collection methods
+    * talk about lack of return type when Unit
+    * Now all of our Session clients are Kotlin we can inline the copys, except for withPresenters, which we
+      can make vararg
+    * Now the copy invocations don't need testing
+    * Move withPresenters methods out of class into extension ... much nicer in Kotlin, yeah?
+    * Explain extension functions in more detail ... syntactic sugar for static methods
+    * Move withPresenters into SessionTests where it is used to illustrate convenience extensions
+    * Rename test to `illustrate convenience extension methods` and talk about names
+    * run the tests, check diffs, talk about diffs, checkin
+  * Slots  
+    * Convert Slots.  It's all Kotlin!!! That was easy!!1!
+    * run the tests, check diffs, talk about diffs, checkin
 
 
 * Part 1a: Null and nullability
