@@ -8,7 +8,7 @@ typealias Presenter = learnyouakotlin.solution.part1.Presenter
 typealias Slots = learnyouakotlin.solution.part1.Slots
 
 // implement this
-fun allSchedules(iterable: Iterable<Session>): Sequence<List<Session>> =
+fun allSchedules(sessions: Iterable<Session>): Sequence<List<Session>> =
     emptySequence()
 
 // implement this
