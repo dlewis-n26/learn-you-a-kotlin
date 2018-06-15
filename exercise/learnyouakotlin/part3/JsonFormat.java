@@ -1,4 +1,4 @@
-package learnyouakotlin.part2;
+package learnyouakotlin.part3;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,7 +14,7 @@ import java.util.Spliterator;
 import java.util.stream.Collectors;
 
 import static java.util.stream.StreamSupport.stream;
-import static learnyouakotlin.part2.Json.*;
+import static learnyouakotlin.part3.Json.*;
 
 public class JsonFormat {
     public static JsonNode sessionToJson(Session session) {

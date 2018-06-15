@@ -1,16 +1,13 @@
-package learnyouakotlin.solution.part2
+package learnyouakotlin.solution.part3
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.oneeyedmen.okeydoke.ApproverFactories.fileSystemApproverFactory
 import com.oneeyedmen.okeydoke.junit.ApprovalsRule
 import learnyouakotlin.solution.part1.Presenter
 import learnyouakotlin.solution.part1.Session
-import learnyouakotlin.solution.part2.asStableJsonString
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Rule
 import org.junit.Test
-import java.io.File
 
 class JsonFormatTests {
     @Rule

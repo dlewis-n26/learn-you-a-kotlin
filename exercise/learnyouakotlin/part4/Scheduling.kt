@@ -1,6 +1,6 @@
-package learnyouakotlin.part3
+package learnyouakotlin.part4
 
-import java.util.Random
+import java.util.*
 
 // Remove ("solution.") from these type aliases if you've completed part 1
 typealias Session = learnyouakotlin.solution.part1.Session

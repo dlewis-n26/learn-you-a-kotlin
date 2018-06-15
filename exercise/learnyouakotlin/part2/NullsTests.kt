@@ -1,4 +1,4 @@
-package learnyouakotlin.part1a
+package learnyouakotlin.part2
 
 import learnyouakotlin.part1.Session
 import learnyouakotlin.part1.Slots
