@@ -58,11 +58,15 @@ Suggested progress
 
 
 * Part 2: Null and nullability
-
+  * Look at Sessions - a bunch of static convenience methods to manage a collection
+  * Look at SessionsTests - already Kotlin
+  * Talk about companion object, static etc
   * `nulls` test
     * show null-check with bang-bang instead of `as`
     * Kotlin infers second reference cannot be null because of flow typing
     * Change the title, and show bang bang you're dead
+  * Convert Sessions to Kotlin
+  * Talk about use of extension methods on existing types instead of defining new types 
   * `null_safe_access` test
     * lift the return out of the if
     * convert if to elvis operator
