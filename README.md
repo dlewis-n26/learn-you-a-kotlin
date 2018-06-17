@@ -66,17 +66,19 @@ Suggested progress
     * Kotlin infers second reference cannot be null because of flow typing
     * Change the title, and show bang bang you're dead
   * Convert Sessions to Kotlin
-  * Talk about use of extension methods on existing types instead of defining new types 
-  * `null_safe_access` test
-    * lift the return out of the if
-    * convert if to elvis operator
-    * convert to extension method and give a better name
-      * note - extension method on a _nullable_ type.  That means `this` can be null!
-        For example...
-  * `elvis` test
-    * convert to extension method first
-    * lift return
-    * have to manually introduce elvis operator 
+  * Run tests
+  * subtitleOf
+    * Compare with Java - talk about ?. 
+  * subtitleOrPrompt
+    * Compare with Java - talk about ?:
+  * Move Session static methods to top level scope - talk about static scope
+  * Make into extension functions
+  * Note use of extension functions on nullable types
+  * Remove boilerplate
+  * Convert findWithTitle to Kotlin - note lambda syntax and destructuring
+  * Run tests
+  * Talk about API design by adding extension methods to existing types instead of defining new types 
+  * run the tests, check diffs, talk about diffs, checkin
 
 
 * Part 3: modules and functions
