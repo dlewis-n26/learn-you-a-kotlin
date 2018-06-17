@@ -34,6 +34,5 @@ class SessionsTests {
     fun elvis() {
         assertEquals("for all the good it will do you", Sessions.subtitleOrPrompt(learnYouAKotlin))
         assertEquals("click to enter subtitle", Sessions.subtitleOrPrompt(refactoringToStreams))
-        assertEquals("click to enter subtitle", Sessions.subtitleOrPrompt(null))
     }
 }
