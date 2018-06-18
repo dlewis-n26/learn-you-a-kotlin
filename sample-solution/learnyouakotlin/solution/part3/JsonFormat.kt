@@ -1,10 +1,10 @@
-package learnyouakotlin.solution.part2
+package learnyouakotlin.solution.part3
 
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.databind.JsonNode
 import learnyouakotlin.solution.part1.Presenter
 import learnyouakotlin.solution.part1.Session
-import learnyouakotlin.solution.part2.Result.Failure
+import learnyouakotlin.solution.part3.Result.Failure
 
 fun Session.asJson() = obj(
     "title" of title,

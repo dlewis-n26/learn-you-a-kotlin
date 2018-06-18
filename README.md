@@ -57,12 +57,16 @@ Suggested progress
     * run the tests, check diffs, talk about diffs, checkin
 
 
-* Part 1a: Null and nullability
-
+* Part 2: Null and nullability
+  * Look at Sessions - a bunch of static convenience methods to manage a collection
+  * Look at SessionsTests - already Kotlin
+  * Talk about companion object, static etc
   * `nulls` test
     * show null-check with bang-bang instead of `as`
     * Kotlin infers second reference cannot be null because of flow typing
     * Change the title, and show bang bang you're dead
+  * Convert Sessions to Kotlin
+  * Talk about use of extension methods on existing types instead of defining new types 
   * `null_safe_access` test
     * lift the return out of the if
     * convert if to elvis operator
@@ -75,7 +79,7 @@ Suggested progress
     * have to manually introduce elvis operator 
 
 
-* Part 2: modules and functions
+* Part 3: modules and functions
   * Json
     * Before converting to Kotlin...
       * Try annotating `props` param of `obj` method with `@Nullable` so comments about nullability
@@ -108,11 +112,11 @@ Suggested progress
       * Discuss gradual introduction of mini-DSLs, rather than up-front DSL design which often ends up inflexible
 
 
-* Part 3: Write new algorithmic code
+* Part 4: Write new algorithmic code
   * Implement functions in Scheduling and run Suggestaconf
 
 
-* Part 4: Address loss of type safety w.r.t. exceptions
+* Part 5: Address loss of type safety w.r.t. exceptions
   * Make SessionCode::parse return a SessionCode?
   * Introduce a Result<T> algebraic data type (sealed class hierarchy)
   * Make JsonNode.toXxx return Result<Xxx>

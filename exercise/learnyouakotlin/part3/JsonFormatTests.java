@@ -1,4 +1,4 @@
-package learnyouakotlin.part2;
+package learnyouakotlin.part3;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -9,8 +9,8 @@ import learnyouakotlin.part1.Slots;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static learnyouakotlin.part2.JsonFormat.sessionFromJson;
-import static learnyouakotlin.part2.JsonFormat.sessionToJson;
+import static learnyouakotlin.part3.JsonFormat.sessionFromJson;
+import static learnyouakotlin.part3.JsonFormat.sessionToJson;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
