@@ -19,7 +19,6 @@ sourceSets {
     test {
         java {
             srcDir 'exercise'
-            srcDir 'sample-solution'
         }
     }
 }
