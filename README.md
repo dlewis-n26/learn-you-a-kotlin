@@ -82,15 +82,18 @@ Suggested progress
 
 
 * Part 3: modules and functions
+  * Look at JsonFormatTests 
+    * note that we want to marshall session to and from JSON
+  * Look at JsonFormat
+    * we're groping towards a Java DSL for JSON, using Json
   * Json
-    * Before converting to Kotlin...
-      * Try annotating `props` param of `obj` method with `@Nullable` so comments about nullability
-        are not necessary -- you cannot!
+    * Try annotating `props` param of `obj` method with `@Nullable` so comments about nullability
+      are not necessary -- you cannot!
+    * Note use of Map.Entry - used as a pair. But Kotlin has a pair.
+    * Import Map.Entry, replace Entry< with Pair<, fix issues, 
+    * Run tests, checkin
     * Convert to Kotlin, applying changes to affected code
-      * You'll get compiler errors: 
-        * import kotlin.collections.Map.Entry not java.util.Map.Entry
-            * talk about kotlin's intrinsic collection types mapped by the compiler onto the Java collection types
-        * Change toList() to Collectors.toList() and remove generic params <...>
+      * You'll get compiler errors - ignore them for now 
       * Look at the changes.  JsonFormat and JsonFormatTests are now FUGLY!
          * Explain Kotlin objects -- they are singletons!!! :scream-emoji: 
          * Revert.
@@ -98,9 +101,9 @@ Suggested progress
   * JsonFormatTests
     * Convert to Kotlin AND RERUN THE TESTS
     * They fail, because JUnit needs `approval` to be a field.  Annotate with @JvmField
-    * Explain the syntax for treating lambdas as Java functional interfaces (if there's time)
   * JsonFormat
-    * Convert to Kotlin & fix compilation errors by removing explicit `Function<...>` SAM notation
+    * Convert to Kotlin - IJ doesn't do a very good job in the face of Java lambdas sometimes
+    * Fix compilation errors by removing explicit `Function<...>` SAM notation
     * Explain `it` variable in lambdas
     * Convert lambdas to references
     * Remove @Throws: it's not called from Java any more (we'll talk about type safe error handling later if we have time)
@@ -110,16 +113,25 @@ Suggested progress
   * Back to Json
     * Convert to Kotlin
     * To make it compile:
-      * import kotlin.collections.Map.Entry, not java.util.Map.Entry
       * Use Kotlin's function type syntax instead of java.util.Function<T,U>
       * remove some explicit type params that are not needed
       * use nullable types to indicate that array and iterable *elements* can be null
-    * Use Pair<String,JsonNode> instead of Map.Entry, and then use Kotlin's collection pipeline functions
     * move functions to module scope
+    * remove streams
+    * use infix to
+    * observe `object`
+    * replace props.forEach with filterNotNull().toMap()
+    * in array use apply to initialise result ...
+    * ... but then replace it with ArrayNode(nodes, elements.toList())
     * Convert functions to extension methods where applicable
+    * We can get rid of Iterable<T>.array(fn) now
     * Convert `prop(name,value)` to `name of value` (infix function)
       * Discuss gradual introduction of mini-DSLs, rather than up-front DSL design which often ends up inflexible
-
+  * Back to JsonFormat
+    * make extension properties from nonBlank functions
+    * use isNullOrBlank
+    * use let in Session.toJson
+    
 
 * Part 4: Write new algorithmic code
   * Implement functions in Scheduling and run Suggestaconf
