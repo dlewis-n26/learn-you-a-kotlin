@@ -85,11 +85,18 @@ Suggested progress
       * Try annotating `props` param of `obj` method with `@Nullable` so comments about nullability
         are not necessary -- you cannot!
     * Convert to Kotlin, applying changes to affected code
-      * look at the changes.  JsonFormat and JsonFormatTests are now FUGLY!  Revert.
+      * You'll get compiler errors: 
+        * import kotlin.collections.Map.Entry not java.util.Map.Entry
+            * talk about kotlin's intrinsic collection types mapped by the compiler onto the Java collection types
+        * Change toList() to Collectors.toList() and remove generic params <...>
+      * Look at the changes.  JsonFormat and JsonFormatTests are now FUGLY!
+         * Explain Kotlin objects -- they are singletons!!! :scream-emoji: 
+         * Revert.
       * We could annotate all methods in Json with @JvmStatic.  Or we could convert the dependent classes first.  Let's do the latter.
   * JsonFormatTests
     * Convert to Kotlin AND RERUN THE TESTS
     * They fail, because JUnit needs `approval` to be a field.  Annotate with @JvmField
+    * Explain the syntax for treating lambdas as Java functional interfaces (if there's time)
   * JsonFormat
     * Convert to Kotlin & fix compilation errors by removing explicit `Function<...>` SAM notation
     * Explain `it` variable in lambdas
