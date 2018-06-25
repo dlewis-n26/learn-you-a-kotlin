@@ -28,8 +28,7 @@ public class JsonFormatTests {
                 new Presenter("Nat Pryce"));
 
         JsonNode json = sessionToJson(session);
-
-        approval.assertApproved(json, Json::toStableJsonString);
+        approval.assertApproved(Json.toStableJsonString(json));
     }
 
     @Test
@@ -41,8 +40,7 @@ public class JsonFormatTests {
                 new Presenter("Ivan Moore"));
 
         JsonNode json = sessionToJson(session);
-
-        approval.assertApproved(json, Json::toStableJsonString);
+        approval.assertApproved(Json.toStableJsonString(json));
     }
 
     @Test
@@ -55,7 +53,6 @@ public class JsonFormatTests {
                 new Presenter("Duncan McGregor"));
 
         Session parsed = sessionFromJson(sessionToJson(original));
-
         assertThat(parsed, equalTo(original));
     }
 }
