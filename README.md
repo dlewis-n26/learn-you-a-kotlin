@@ -1,5 +1,7 @@
-Exercise for the tutorial "Learn You a Kotlin For All The Good It Will Do You"
-==============================================================================
+Exercise for the tutorial "Refactoring to Kotlin"
+=================================================
+
+Aim of the session is to introduce Kotlin by converting Java code.
 
 First create a new branch. Check in after each change.  This lets you
 easily show how auto-converting code to Kotlin affects how its API
@@ -7,7 +9,7 @@ looks when used from Java
 
 Suggested progress
 
-* Part 1: class syntax and data classes
+* Part 1: Class syntax and data classes
   * Presenter
     * note that this an immutable value class with a public final field 
     * convert to Kotlin
@@ -19,10 +21,10 @@ Suggested progress
     * go to checkin - note JsonFormat.java has changed - IntelliJ has changed the field access to a getter - talk about this
     * checkin
   * Session
-    * note that this is an immutable value class with public fields, one of which is Nullable, and it defensively copies the presenters
+    * note that this is an immutable value class with public fields, one of which is nullable, and it defensively copies the presenters
     * also that we have 2 constructors - one a convenience vararg
     * convert to Kotlin
-    * Note subtitle is a `String?` - talk about nullabilty
+    * Note subtitle is a `String?` - talk about nullability
     * Note primary v secondary constructor, observe primary ctor invocation
     * Note we can have a free property - presenters, initialised in class body
     * Talk about init block, but then remove it
@@ -33,8 +35,6 @@ Suggested progress
     * Remove empty ctor body
     * Convert withXxx methods to single expression  - note lack of new
     * Convert withXxx methods to invoke .copy (do via add argument names and talk about argument names)
-    * ***** Duncan says don't Talk about extension functions a bit. 
-      * Try to move withXxx methods out of class into extension methods ... but it makes Java code too ugly
     * run the tests, check diffs, talk about diffs, checkin
   * SessionTests  
     * convert to Kotlin
@@ -53,7 +53,7 @@ Suggested progress
     * Rename test to `illustrate convenience extension methods` and talk about names
     * run the tests, check diffs, talk about diffs, checkin
   * Slots  
-    * Convert Slots.  It's all Kotlin!!! That was easy!!1!
+    * Convert Slots.  It's all Kotlin!!! That was easy!
     * run the tests, check diffs, talk about diffs, checkin
 
 
@@ -132,17 +132,22 @@ Suggested progress
     * use isNullOrBlank
     * use let in Session.toJson
     
+Themes
 
-* Part 4: Write new algorithmic code
-  * Implement functions in Scheduling and run Suggestaconf
-
-
-* Part 5: Address loss of type safety w.r.t. exceptions
-  * Make SessionCode::parse return a SessionCode?
-  * Introduce a Result<T> algebraic data type (sealed class hierarchy)
-  * Make JsonNode.toXxx return Result<Xxx>
-  * Introduce operations on Result<T>:
-    * map :: (A)->B, Result<A> -> Result<B>
-    * flatMap :: (A)->Result<B>, Result<A> -> Result<B>
-    * all :: (List<Result<T>>) -> Result<List<T>>
-    * apply :: ((A,B,C)->R, Result<A>, Result<B>, Result<C>)->Result<R>
+  * pragmatic language
+  * Java interop
+  * tooling
+  * much less classy than Java
+  * extension functions for fun and profit  
+ 
+There is a lot we still haven't covered
+  
+  * delegation
+  * sealed classes
+  * when expressions
+  * sequences 
+  * inline functions
+  * reified types in functions
+  * coroutines
+  * error handling
+  * ...
