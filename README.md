@@ -78,6 +78,7 @@ Suggested progress
   * Convert findWithTitle to Kotlin - note lambda syntax and destructuring
   * Run tests
   * Talk about API design by adding extension methods to existing types instead of defining new types 
+  * typealias List<Session> to Sessions
   * run the tests, check diffs, talk about diffs, checkin
 
 
@@ -105,7 +106,7 @@ Suggested progress
     * Convert to Kotlin - IJ doesn't do a very good job in the face of Java lambdas sometimes
     * Fix compilation errors by removing explicit `Function<...>` SAM notation
     * Explain `it` variable in lambdas
-    * Convert lambdas to references
+    * Don't convert lambdas to references - do move them outside parameter list
     * Remove @Throws: it's not called from Java any more (we'll talk about type safe error handling later if we have time)
     * Convert streams code to Kotlin map/flatMap/etc. (Remember that JsonNode is iterable, so has map, etc. defined for it)
     * move functions to module scope
