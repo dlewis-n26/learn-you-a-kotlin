@@ -33,7 +33,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
     compile "com.google.code.findbugs:jsr305:3.0.1"
-    compile "org.http4k:http4k-core:$http4k_version"
 
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testCompile 'junit:junit:4.12'
