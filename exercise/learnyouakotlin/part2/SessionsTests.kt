@@ -16,7 +16,7 @@ class SessionsTests {
     val sessions = listOf(learnYouAKotlin, refactoringToStreams)
 
     @Test
-    fun nulls() {
+    fun `nulls and flow typing`() {
         val session: Session? = Sessions.findWithTitle(sessions, "learn you a kotlin")
 
         val notNullSession = session as Session
@@ -25,14 +25,20 @@ class SessionsTests {
     }
 
     @Test
-    fun null_safe_access() {
+    fun `null safe access`() {
         assertEquals("for all the good it will do you", Sessions.subtitleOf(learnYouAKotlin))
         assertNull(Sessions.subtitleOf(null))
     }
 
     @Test
-    fun elvis() {
+    fun subtitleOrPrompt() {
         assertEquals("for all the good it will do you", Sessions.subtitleOrPrompt(learnYouAKotlin))
         assertEquals("click to enter subtitle", Sessions.subtitleOrPrompt(refactoringToStreams))
+    }
+
+    @Test
+    fun find() {
+        assertEquals(refactoringToStreams, Sessions.findWithTitle(sessions, "refactoring to streams"))
+        assertNull(Sessions.findWithTitle(sessions, "nosuch"))
     }
 }
