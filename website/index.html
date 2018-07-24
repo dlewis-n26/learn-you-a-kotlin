@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Refactoring to Kotlin Workshop</title>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+    <style>
+        body {
+            margin: 0;
+            background-color: white;
+            font-family: "Open Sans", sans-serif;
+            font-size: larger;
+            text-align: justify;
+        }
+
+        #header {
+            background-color: darkslategray;
+            color: white;
+            padding: 1em;
+            font-size: larger;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #when {
+            display: block;
+            position: absolute;
+            text-align: center;
+            font-weight: bold;
+            font-size: small;
+            left: 0;
+            top: 0;
+            transform: translateX(-50%) translate(5em, 2em) rotate(-45deg);
+            background: #dcd407;
+            color: #111111;
+            padding: 1em 16em;
+        }
+
+        #when a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+        #header-content {
+            width: 500px;
+            margin: auto;
+        }
+
+        #middle {
+            width: 600px;
+            margin: auto;
+            padding: 1em;
+        }
+
+        .quote {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div id="header-content">
+        <h1>Refactoring to Kotlin</h1>
+
+        <p id="when">
+            <a href="https://kotlinconf.com/workshops/"
+               onclick="ga('send', 'event', 'links', 'click', 'kotlinconf-workshop');">Amsterdam<br/>3rd October 2018</a>
+        </p>
+
+        <p id="blurb">
+            If you're a Java developer who hasn't yet made the leap to Kotlin, or have a Java codebase you would like to
+            migrate, this one day workshop is for you.
+        </p>
+    </div>
+</div>
+
+<div id="middle">
+    <div id="intro">
+        <p>
+            Working as a group, we'll take existing Java code, convert it to Kotlin in IntelliJ, and then refactor the
+            results to idiomatic Kotlin. We'll see how to take advantage of the language to make code smaller, faster
+            and more expressive, whilst at the same time interoperating with your existing application and Java
+            libraries.
+        </p>
+        <p>
+            In the afternoon we move from the prepared exercises to look at your code, working together to apply the
+            techniques and insights from the morning to real codebases with real constraints. So if you have some code
+            you'd like to start migrating, bring it along.
+        </p>
+    </div>
+    <div id="presenters">
+        <h2>The Presenters</h2>
+        <p>Nat Pryce co-authored the highly respected book, <span
+                class="quote">Growing Object Software Guided by the Tests</span>. Duncan McGregor
+            didn’t, but manages to get by regardless. They have a combined 40 years of programming on the JVM, in
+            applications
+            ranging from real-time video processing to finance.</p>
+        <p>Duncan and Nat adopted Kotlin while working together in 2015 and presented their experiences to the first
+            London
+            Kotlin Meetup. They talked about <span class="quote">Expressive Kotlin</span> at JetBrains London Kotlin
+            Night in
+            2016. Duncan presented <span class="quote">The Cost of Kotlin Language Features</span> at KotlinConf 2017,
+            and Nat
+            is presenting <span class="quote">Exploring the Kotlin type hierarchy from top to bottom</span> at
+            KotlinConf 2018.
+        </p>
+    </div>
+    <div id="feedback">
+        <h2>Feedback from previous sessions</h2>
+        <p>
+            The workshop is based on sessions for the British Computer Society and SPA Conference in 2016 and the London
+            Java Community in 2018.
+        </p>
+        <ul>
+            <li>"Great intro to Kotlin, lots of crossover and functionality"</li>
+            <li>"Good at highlighting what’s different about Kotlin compared to Java or Scala"</li>
+            <li>"Love the energy and interaction with clear explanation"</li>
+            <li>"The speakers were good at speaking. The talk itself was well thought out and a great introduction to
+                Kotlin.
+                It was obvious the guy knew his stuff with the answers he gave to questions. The ability to ask
+                questions as we
+                went on was very useful."
+            </li>
+            <li>"I liked the pair programming and live coding aspects of the event. It's really engaging."</li>
+            <li>"It was very smoothly executed and good to have someone on keyboard with someone else talking so it
+                flowed
+                well."
+            </li>
+            <li>"The presentation was lively and full of personality."</li>
+        </ul>
+    </div>
+    <div id="dates">
+        <h2>Workshop Dates</h2>
+        <p>The workshop is being held as part of KotlinConf on 3 October 2018 in Amsterdam. Sign up on the
+            <a href="https://kotlinconf.com/workshops/"
+               onclick="ga('send', 'event', 'links', 'click', 'kotlinconf-workshop');">conference website</a>.
+        </p>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-76842028-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
