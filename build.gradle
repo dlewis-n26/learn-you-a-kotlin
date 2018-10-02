@@ -1,19 +1,14 @@
 buildscript {
-    ext.kotlin_version = '1.2.50'
     ext.jackson_version = '2.7.3'
-    ext.http4k_version = '3.28.0'
 
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
 }
 
-apply plugin: 'java'
-apply plugin: 'kotlin'
-
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.2.71"
+}
 
 sourceSets {
     test {
@@ -23,18 +18,17 @@ sourceSets {
     }
 }
 
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "org.jetbrains.kotlin:kotlin-reflect"
     compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
     compile "com.google.code.findbugs:jsr305:3.0.1"
 
-    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+    testCompile "org.jetbrains.kotlin:kotlin-test"
     testCompile 'junit:junit:4.12'
     testCompile 'com.natpryce:hamkrest:1.4.2.2'
     testCompile 'com.oneeyedmen:okeydoke:1.1.0'
@@ -42,7 +36,7 @@ dependencies {
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
+    gradleVersion = '4.8'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 
